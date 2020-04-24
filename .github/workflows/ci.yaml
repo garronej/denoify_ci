@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  - push
+  - pull_request
+
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-16.04
+#     strategy:
+#       matrix:
+#         node: [ '10', '8' ]
+#     name: Node ${{ matrix.node }} sample
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Setup node
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: ${{ matrix.node }}
+#       - run: npm install
+#       - run: npm test
+
+jobs:
+  build: 
+  test:
+    runs-on: ubuntu-16.04
+    strategy:
+      matrix:
+        deno: 0.x
+    name: Deno ${{ matrix.deno }} sample
+    steps:
+      - uses: actions/checkout@master
+      - name: Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.cache/deno
+          key: deno-${{ runner.os }}-${{ hashFiles('deno-lock.json') }}
+          restore-keys: |
+            deno-${{ runner.os }}-${{ hashFiles('deno-lock.json') }}
+            deno-${{ runner.os }}-
+            deno-
+      - name: Setup Deno
+        uses: denolib/setup-deno@master
+        with:
+          deno-version: ${{ matrix.deno }}
+      - run: deno run https://deno.land/std/examples/welcome.ts

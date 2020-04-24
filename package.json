@@ -1,0 +1,33 @@
+{
+    "name": "#{REPO_NAME}#",
+    "version": "0.0.0",
+    "description": "#{DESC}#",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#.git"
+    },
+    "main": "./dist/lib/index.js",
+    "types": "./dist/lib/index.d.ts",
+    "scripts": {
+        "tsc": "npx tsc",
+        "test:node": "node ./dist/test/",
+        "test:deno": "deno ./dist/test/deno_index.ts",
+        "test": "npm run test:node && npm run test:deno",
+        "denoify": "npx denoify",
+        "build": "npm run tsc && npm run denoify"
+    },
+    "author": "u/#{USER_OR_ORG}#",
+    "license": "MIT",
+    "files": [
+        "/dist/lib",
+        "/src/lib"
+    ],
+    "keywords": [],
+    "homepage": "https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#",
+    "devDependencies": {
+        "typescript": "^3.8.3",
+        "@types/node": "^8.9.1",
+        "denoify": "^0.0.0",
+        "evt": "^1.6.8"
+    }
+}
