@@ -37,5 +37,11 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         branch: dev
+    - name: Create master branch
+      run: |
+        git branch master
+        git checkout master
+        git push origin master
+      
 
 
