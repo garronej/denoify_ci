@@ -1,3 +1,3 @@
 # denoify_kickstart
 
-Waiting to be overwriten by deb branch
+Waiting to be overwritten by dev branch
