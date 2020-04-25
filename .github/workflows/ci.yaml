@@ -72,9 +72,6 @@
 #           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-
-
-name: Initial setup
 on: [push, pull_request,check_run,check_suite,create,delete,deployment,fork,gollum,label]
 
 jobs:
