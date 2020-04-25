@@ -1,5 +1,5 @@
 
-import { myObject } from "../lib";
+import { myObject } from "..";
 
 import { assert } from "evt/dist/tools/typeSafety";
 import * as inDepth from "evt/dist/tools/inDepth";
