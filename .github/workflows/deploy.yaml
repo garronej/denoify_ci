@@ -1,0 +1,124 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - rollout
+  pull_request:
+    types:
+      - closed
+    branches: 
+      - rollout
+
+jobs:
+  all: 
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged
+    steps:
+     
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - name: Dump job context
+      env:
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: echo "$JOB_CONTEXT"
+    - name: Dump steps context
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: echo "$STEPS_CONTEXT"
+    - name: Dump runner context
+      env:
+        RUNNER_CONTEXT: ${{ toJson(runner) }}
+      run: echo "$RUNNER_CONTEXT"
+    - name: Dump strategy context
+      env:
+        STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+      run: echo "$STRATEGY_CONTEXT"
+
+    - name: Dump matrix context
+      env:
+        MATRIX_CONTEXT: ${{ toJson(matrix) }}
+      run: echo "$MATRIX_CONTEXT"
+
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@v1
+    - run: npm install
+    - run: npm run build
+
+    - name: Force stage dist files for commit ( git add -f ./dist ./deno_dist )  
+      uses: garronej/denoify-kickstart-action@master
+      with: 
+        action_name: stage_dist_files
+
+    #
+    #- name: Changes to the project structures to achieve shorter path
+    #  uses: garronej/denoify-kickstart-action@master
+    #  with: 
+    #    action_name: structural_changes
+    #
+    #    move_dist_files_to_root: true 
+    #    # If true  the content of dist and deno_dist will be moved to root. 
+    #    # package.json main and type will be updated to reflect this change.
+    #
+    #    remove_sources: true 
+    #    # If true the ./src folder will be removed.
+    #
+    #    only_include_on_master_branches_the_dist_files_packed_in_the_npm_bundle: true
+    #    # If true and package.json has a "field" entry ...
+    #
+    #    remove_test_files: true
+    #    # If applicable and true remove the test folder in the source directory and at the project root.
+    #
+
+    - name: Get current version for commit message
+      uses: gregoranders/nodejs-project-info@v0.0.5
+        
+    - name: Commit changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "action"
+        git commit -am "v${{ steps.projectinfo.outputs.version }}"
+
+    - name: Remove master branch
+      continue-on-error: true
+      run: git push origin :master
+
+    - name: Create the new master branch
+      run: |
+        git branch master
+        git checkout master
+        git push origin master
+
+    - name: No pull request should ever be merged to master
+      uses: garronej/denoify-kickstart-action@master
+      with: 
+        action_name: update_protected_branch_required_status_checks
+        repository: ${{ github.repository }}
+        repository_owner: ${{ github.repository_owner }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: master
+        required_status_checks_json: '["never"]'
+
+    - name: Create Release
+      uses: garronej/create-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
+
+
+
+    
+        
+        
+ 
+  
+  
+  
+
+  

@@ -25,8 +25,7 @@
 
 ## Deno:
 
-To import the latest version:   
-
+For the latest version:   
 ```typescript
 import { myFunction } from 'https://deno.land/x/#{REPO_NAME}#/mod.ts';
 ```
@@ -45,4 +44,11 @@ import { myFunction } from 'https://deno.land/x/#{REPO_NAME}#@0.1.0/mod.ts';
 ```typescript
 import { myFunction } from '#{REPO_NAME}#'; 
 ```
+
+## CI/CD
+
+This repository has has continus integration/deployment setup via GitHub Action. 
+
+[CI/CD DOCUMENTATION](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/blob/dev/CI-CD.md) for instructions. 
+
 

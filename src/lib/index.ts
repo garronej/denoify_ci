@@ -1,3 +1,3 @@
 
 export { myFunction } from "./myFunction";
-export { myObject } from "./myObject";
+export { myObject } from "../myObject";

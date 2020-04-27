@@ -4,4 +4,4 @@
 console.log("Running tests on Deno");
 
 import "./myFunction";
-import "./myObject";
+import "../lib/myObject";

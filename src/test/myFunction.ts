@@ -1,5 +1,5 @@
 
-import { myFunction } from "..";
+import { myFunction } from "../lib";
 
 import { getPromiseAssertionApi } from "evt/dist/tools/testing/getPromiseAssertionApi";
 
