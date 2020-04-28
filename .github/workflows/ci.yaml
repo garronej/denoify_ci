@@ -85,9 +85,6 @@ jobs:
       - run: npm run test:node
   test-deno:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        deno: 0.x
     name: Deno ${{ matrix.deno }} sample
     steps: 
 
@@ -127,7 +124,7 @@ jobs:
              deno-
       - uses: denolib/setup-deno@master
         with:
-          deno-version: ${{ matrix.deno }}
+          deno-version: 0.x
       - run: npm install
       - run: npm run denoify
       - run: npm run test:deno
