@@ -39,7 +39,7 @@ jobs:
       run: echo "$MATRIX_CONTEXT"
 
     - uses: actions/checkout@master
-    - uses: garronej/denoify-kickstart-action@master
+    - uses: garronej/denoify_kickstart_action@master
       with: 
         action_name: check_version_number_updated
         repository: ${{ github.repository }}

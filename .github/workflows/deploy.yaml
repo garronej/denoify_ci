@@ -48,13 +48,13 @@ jobs:
     - run: npm run build
 
     - name: Force stage dist files for commit ( git add -f ./dist ./deno_dist )  
-      uses: garronej/denoify-kickstart-action@master
+      uses: garronej/denoify_kickstart_action@master
       with: 
         action_name: stage_dist_files
 
     #
     #- name: Changes to the project structures to achieve shorter path
-    #  uses: garronej/denoify-kickstart-action@master
+    #  uses: garronej/denoify_kickstart_action@master
     #  with: 
     #    action_name: structural_changes
     #
@@ -92,7 +92,7 @@ jobs:
         git push origin master
 
     - name: No pull request should ever be merged to master
-      uses: garronej/denoify-kickstart-action@master
+      uses: garronej/denoify_kickstart_action@master
       with: 
         action_name: update_protected_branch_required_status_checks
         repository: ${{ github.repository }}

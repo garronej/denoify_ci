@@ -65,7 +65,7 @@ jobs:
           git checkout rollout
           git push origin rollout
       - name: Enable protection settings on 'rollout' branch to only allow merging pull requests that pass ci workflow
-        uses: garronej/denoify-kickstart-action@master
+        uses: garronej/denoify_kickstart_action@master
         with: 
           action_name: update_protected_branch_required_status_checks
           repository: ${{ github.repository }}
