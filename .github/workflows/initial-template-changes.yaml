@@ -50,6 +50,7 @@ jobs:
           npm install --save-dev evt
           rm package-lock.json
       - name: Commit files
+        continue-on-error: true
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "action"
@@ -71,7 +72,7 @@ jobs:
           repository: ${{ github.repository }}
           repository_owner: ${{ github.repository_owner }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: dev
+          branch: rollout
           required_status_checks_json: '["check_version_number_updated","test-node","test-deno"]'
 
 
