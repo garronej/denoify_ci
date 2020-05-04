@@ -1,0 +1,84 @@
+on:
+  repository_dispatch:
+    types: publish
+
+jobs:
+  update_changelog:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Update CHANGELOG.md
+      uses: garronej/github_actions_toolkit@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      with:
+        action_name: update_changelog
+        owner: ${{github.repository_owner}}
+        repo: ${{github.repository.name}}
+        branch_behind: master
+        branch_ahead: dev
+        commit_author_name: denoify_kickstart #TODO: Change by email
+
+  publish_npm:
+    runs-on: ubuntu-latest
+    needs: update_changelog
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - name: Install and build
+      run: |
+        npm install
+        npm run build
+    - run: npm run structural_changes:npm
+      env:
+        DRY_RUN: "0"
+    - name: Publishing on NPM ( you must create a secret called NPM_TOKEN. https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets )
+      run: npm publish 
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  publish_deno:
+    runs-on: ubuntu-latest
+    needs: publish_npm
+    steps:
+    - name: Remove master branch
+      continue-on-error: true
+      run: git push origin :master
+    - name: Create the new master branch
+      run: |
+        git branch master
+        git checkout master
+        git push origin master
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - name: Install and build
+      run: |
+        npm install
+        npm run build
+    - run: npm run structural_changes:deno
+      env:
+        DRY_RUN: "0"
+    - name: Commit changes
+      run: |
+        git config --local user.email "denoify_kikstart@github.com"
+        git config --local user.name "denoify_kickstart"
+        git add -A
+        git commit -am "Automatic structural changes for Deno"
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: master
+    - name: Create Release
+      uses: actions/create-release@v1.0.1 
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      with:
+        tag_name: ${{ github.event.client_payload.to_version }}
+        release_name: Release ${{ github.event.client_payload.to_version }}
+        draft: false
+        prerelease: false
+  add_to_deno_land_third_party_module_register:
+    runs-on: ubuntu-latest
+    needs: publish_deno
+    steps:
+      - name: Create pull request on deno_website2
+        run: echo TODO
