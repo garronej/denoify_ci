@@ -23,32 +23,42 @@
 
 # Install / Import
 
-## Deno:
-
-For the latest version:   
-```typescript
-import { myFunction } from 'https://deno.land/x/#{REPO_NAME}#/mod.ts';
-```
-
-To import a specific [release](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/releases):  
-
-```typescript
-import { myFunction } from 'https://deno.land/x/#{REPO_NAME}#@0.1.0/mod.ts';
-```
-
 ## Node:
 
 ```bash
 > npm install --save #{REPO_NAME}#
 ```
 ```typescript
-import { myFunction } from '#{REPO_NAME}#'; 
+import { myFunction, myObject } from '#{REPO_NAME}#'; 
+//OR to import a specific file:
+import { myFunction } from '#{REPO_NAME}#/myFunction'
+import { myObject } from '#{REPO_NAME}#/myObject'
 ```
 
-## CI/CD
+## Deno:
+
+For the latest version:   
+```typescript
+import { myFunction, myObject } from 'https://deno.land/x/#{REPO_NAME}#/mod.ts';
+//OR importing specific file: 
+import { myFunction } from 'https://deno.land/x/#{REPO_NAME}#/myFunction.ts';
+import { myObject } from 'https://deno.land/x/#{REPO_NAME}#/myObject.ts';
+```
+
+To import a specific [release](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/releases):  
+
+```typescript
+import { myFunction, myObject } from 'https://deno.land/x/#{REPO_NAME}#@0.1.0/mod.ts';
+//OR
+import { myFunction } from 'https://deno.land/x/#{REPO_NAME}#@0.1.0/myFunction.ts';
+import { myObject } from 'https://deno.land/x/#{REPO_NAME}#@0.1.0/myObject.ts';
+```
+
+
+## CI
 
 This repository has has continus integration/deployment setup via GitHub Action. 
 
-[CI/CD DOCUMENTATION](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/blob/dev/CI-CD.md) for instructions. 
+Refer to [CI.md](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/blob/dev/CI.md) for instructions. 
 
 

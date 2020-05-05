@@ -10,11 +10,13 @@
     "types": "./dist/lib/index.d.ts",
     "scripts": {
         "tsc": "npx tsc",
-        "test:node": "node ./dist/test/",
+        "build": "npm run tsc && npm run denoify",
+        "test:node": "node ./dist/test",
         "test:deno": "deno ./dist/test/deno_index.ts",
         "test": "npm run test:node && npm run test:deno",
         "denoify": "npx denoify",
-        "build": "npm run tsc && npm run denoify"
+        "structural_changes:deno": "node node_modules/denoify/dist/bin/prepareForDenoPublish",
+        "structural_changes:node": "node node_modules/denoify/dist/bin/prepareForNpmPublish"
     },
     "author": "u/#{USER_OR_ORG}#",
     "license": "MIT",

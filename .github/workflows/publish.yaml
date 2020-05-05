@@ -16,7 +16,20 @@ jobs:
         repo: ${{github.repository.name}}
         branch_behind: master
         branch_ahead: dev
-        commit_author_name: denoify_kickstart #TODO: Change by email
+        commit_author_email: denoify_ci@github.com
+        exclude_commit_from_author_names_json: '["denoify_ci"]'
+    - name: Synchronize package.json  and package-lock.json version if needed.
+      uses: garronej/github_actions_toolkit@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+      with:
+        action_name: sync_package_and_package_lock_version
+        owner: ${{github.repository_owner}}
+        repo: ${{github.repository.name}}
+        branch: dev
+        commit_author_email: denoify_ci@github.com
+      
+
 
   publish_npm:
     runs-on: ubuntu-latest
@@ -58,8 +71,8 @@ jobs:
         DRY_RUN: "0"
     - name: Commit changes
       run: |
-        git config --local user.email "denoify_kikstart@github.com"
-        git config --local user.name "denoify_kickstart"
+        git config --local user.email "denoify_ci@github.com"
+        git config --local user.name "denoify_ci"
         git add -A
         git commit -am "Automatic structural changes for Deno"
     - name: Push changes
