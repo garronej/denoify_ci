@@ -12,6 +12,8 @@ jobs:
   job_that_complete_only_if_tests_should_be_run:
     runs-on: ubuntu-latest
     if: ${{ !github.event.created && github.actor != 'denoify_ci' }}
+    steps:
+      - run: echo NOOP
 
   test_node:
     runs-on: ubuntu-latest
