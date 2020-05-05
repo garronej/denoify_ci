@@ -33,4 +33,8 @@ jobs:
           git config --local user.email "joseph@semasim.com"
           git config --local user.name "Joseph Garrone"
           git commit -am "woosh, the template is now ${{ github.event.repository.name }}"
-          git push https://${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository_owner}}/${{github.event.repository.name}}.git
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: dev
