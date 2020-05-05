@@ -15,8 +15,8 @@
         "test:deno": "deno ./dist/test/deno_index.ts",
         "test": "npm run test:node && npm run test:deno",
         "denoify": "npx denoify",
-        "structural_changes:deno": "node node_modules/denoify/dist/bin/prepareForDenoPublish",
-        "structural_changes:node": "node node_modules/denoify/dist/bin/prepareForNpmPublish"
+        "enable_short_import_path:npm": "npx denoify_enable_short_npm_import_path",
+        "enable_short_import_path:deno": "npx denoify_enable_short_deno_import_path"
     },
     "author": "u/#{USER_OR_ORG}#",
     "license": "MIT",
@@ -29,7 +29,7 @@
     "devDependencies": {
         "typescript": "^3.8.3",
         "@types/node": "^8.9.1",
-        "denoify": "^0.0.0",
+        "denoify": "github:garronej/denoify",
         "evt": "^1.6.8"
     }
 }

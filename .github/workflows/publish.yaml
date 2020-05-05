@@ -41,7 +41,7 @@ jobs:
       run: |
         npm install
         npm run build
-    - run: npm run structural_changes:npm
+    - run: npm run enable_short_import_path:deno
       env:
         DRY_RUN: "0"
     - name: Publishing on NPM ( you must create a secret called NPM_TOKEN. https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets )
@@ -66,7 +66,7 @@ jobs:
       run: |
         npm install
         npm run build
-    - run: npm run structural_changes:deno
+    - run: npm run enable_short_import_path:deno
       env:
         DRY_RUN: "0"
     - name: Commit changes
