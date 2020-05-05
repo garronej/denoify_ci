@@ -70,7 +70,7 @@ jobs:
         with: 
           action_name: get_package_json_version
           owner: ${{github.repository_owner}}
-          repo: ${{github.repository.name}}
+          repo: ${{github.event.repository.name}}
           branch: master
 
       - name: Get version on dev
@@ -79,7 +79,7 @@ jobs:
         with: 
           action_name: get_package_json_version
           owner: ${{github.repository_owner}}
-          repo: ${{github.repository.name}}
+          repo: ${{github.event.repository.name}}
           branch: dev
 
       - name: 'Trigger the ''publish'' workflow' 
@@ -90,7 +90,7 @@ jobs:
         with:
           action_name: dispatch_event
           owner: ${{github.repository_owner}}
-          repo: ${{github.repository.name}}
+          repo: ${{github.event.repository.name}}
           event_type: publish
           client_payload_json: |
             { 
