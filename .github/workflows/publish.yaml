@@ -25,7 +25,7 @@ jobs:
       with:
         action_name: sync_package_and_package_lock_version
         owner: ${{github.repository_owner}}
-        repo: ${{github.repository.name}}
+        repo: ${{github.event.repository.name}}
         branch: dev
         commit_author_email: denoify_ci@github.com
       
