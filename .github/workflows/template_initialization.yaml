@@ -31,8 +31,8 @@ jobs:
       - name: Commit files
         continue-on-error: true
         run: |
-          git config --local user.email "denoify_ci@github.com"
-          git config --local user.name "denoify_ci"
+          git config --local user.email "joseph@semasim.com"
+          git config --local user.name "Joseph Garrone"
           git commit -am "woosh, the template is now ${{ github.event.repository.name }}"
       - name: Push changes
         uses: ad-m/github-push-action@master
