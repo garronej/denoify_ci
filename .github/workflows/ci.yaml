@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ !github.event.created }}
     steps:
-      - run: echo NOOP
+      - name: OK, It is not the creation of the branch.
+        run: echo NOOP
 
   test_node:
     runs-on: ubuntu-latest
