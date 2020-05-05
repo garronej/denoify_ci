@@ -9,15 +9,15 @@ on:
 
 jobs:
 
-  job_that_complete_only_if_tests_should_be_run:
+  condition_not_create:
     runs-on: ubuntu-latest
-    if: ${{ !github.event.created && github.actor != 'denoify_ci' }}
+    if: ${{ !github.event.created }}
     steps:
       - run: echo NOOP
 
   test_node:
     runs-on: ubuntu-latest
-    needs: job_that_complete_only_if_tests_should_be_run
+    needs: condition_not_create
     strategy:
       matrix:
         node: [ '10', '8' ]
@@ -33,7 +33,7 @@ jobs:
 
   test_deno:
     runs-on: ubuntu-latest
-    needs: job_that_complete_only_if_tests_should_be_run
+    needs: condition_not_create
     name: Deno ${{ matrix.deno }} sample
     steps: 
 
@@ -55,7 +55,7 @@ jobs:
 
   trigger_publish:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
+    if: github.event_name == 'push' && github.actor != 'denoify_ci'
     needs:
       - test_node
       - test_deno

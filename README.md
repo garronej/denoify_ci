@@ -13,7 +13,6 @@
     <img src="https://img.shields.io/npm/l/#{REPO_NAME}#">
 </p>
 <p align="center">
-
   <a href="https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#">Home</a>
   -
   <a href="https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#">Documentation</a>
@@ -59,7 +58,7 @@ import { myObject } from 'https://deno.land/x/#{REPO_NAME}#@0.1.0/myObject.ts';
 
 ## CI
 
-This repository has has continus integration/deployment setup via GitHub Action. 
+This repository has has continus integration/deployment implemented via GitHub Action. 
 
 Refer to [CI.md](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/blob/dev/CI.md) for instructions. 
 
