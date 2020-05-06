@@ -113,7 +113,7 @@ jobs:
         branch: dev
 
     - name: 'Trigger the ''publish'' workflow' 
-      if: ${{env.PAT}} != '' && steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0'
+      if: ${{ !!env.PAT && steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0' }}
       uses: garronej/github_actions_toolkit@master
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
