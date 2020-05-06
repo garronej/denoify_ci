@@ -58,7 +58,9 @@ jobs:
 
   trigger_publish:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'push' && github.actor != 'denoify_ci' && secrets['PAT'] != ''}}
+    env:
+      PAT: ${{secrets.PAT}}
+    if: github.event_name == 'push' && github.actor != 'denoify_ci' && env.PAT != ''
     needs:
       - test_node
       - test_deno
