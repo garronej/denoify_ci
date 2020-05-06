@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PAT: ${{secrets.PAT}}
-    if: github.event_name == 'push' && github.actor != 'denoify_ci' && ${{env.PAT}} != ''
+    if: github.event_name == 'push' && github.actor != 'denoify_ci' && github.actor != ''
     needs:
       - test_node
       - test_deno
