@@ -30,11 +30,11 @@ jobs:
           rm package-lock.json
       - name: Commit files
         run: |
-          git config --local user.email "joseph@semasim.com"
-          git config --local user.name "Joseph Garrone"
+          git config --local user.email "denoify_ci@github.com"
+          git config --local user.name "denoify_ci"
           git commit -am "woosh, the template is now ${{ github.event.repository.name }}"
       - name: Push changes
-        uses: ad-m/github-push-action@master
+        uses: ad-m/github-push-action@v0.5.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
           branch: dev

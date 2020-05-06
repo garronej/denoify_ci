@@ -58,7 +58,7 @@ jobs:
 
   trigger_publish:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.actor != 'denoify_ci'
+    if: secrets.PAT && github.event_name == 'push' && github.actor != 'denoify_ci'
     needs:
       - test_node
       - test_deno
@@ -83,20 +83,16 @@ jobs:
           branch: dev
 
       - name: 'Trigger the ''publish'' workflow' 
-        if: ${{steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0' }} 
+        if: steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0' 
         uses: garronej/github_actions_toolkit@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.PAT }} 
         with:
           action_name: dispatch_event
           owner: ${{github.repository_owner}}
           repo: ${{github.event.repository.name}}
           event_type: publish
-          client_payload_json: |
-            { 
-              "from_version": "${{ steps.v_master.outputs.version }}",
-              "to_version": "${{ steps.v_master.outputs.version }}"
-            }
+          client_payload_json: '{ "from_version": "${{steps.v_master.outputs.version}}", "to_version": "${{steps.v_master.outputs.version}}" }'
 
 
 

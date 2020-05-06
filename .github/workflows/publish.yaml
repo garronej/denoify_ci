@@ -9,7 +9,7 @@ jobs:
     - name: Update CHANGELOG.md
       uses: garronej/github_actions_toolkit@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
         action_name: update_changelog
         owner: ${{github.repository_owner}}
@@ -21,7 +21,7 @@ jobs:
     - name: Synchronize package.json  and package-lock.json version if needed.
       uses: garronej/github_actions_toolkit@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
         action_name: sync_package_and_package_lock_version
         owner: ${{github.repository_owner}}
@@ -76,14 +76,14 @@ jobs:
         git add -A
         git commit -am "Automatic structural changes for Deno"
     - name: Push changes
-      uses: ad-m/github-push-action@master
+      uses: ad-m/github-push-action@v0.5.0
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.PAT }}
         branch: master
     - name: Create Release
       uses: actions/create-release@v1.0.1 
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
         tag_name: ${{ github.event.client_payload.to_version }}
         release_name: Release ${{ github.event.client_payload.to_version }}
