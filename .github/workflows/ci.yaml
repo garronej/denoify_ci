@@ -24,13 +24,13 @@ jobs:
         node: [ '10', '8' ]
     name: Node ${{ matrix.node }} sample
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - run: npm install
-      - run: npm run build
-      - run: npm run test:node
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - run: npm install
+    - run: npm run build
+    - run: npm run test:node
 
   test_deno:
     runs-on: ubuntu-latest
@@ -38,23 +38,23 @@ jobs:
     name: Deno ${{ matrix.deno }} sample
     steps: 
 
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - name: Cache
-        uses: actions/cache@v1
-        with:
-          path: ~/.cache/deno
-          key: deno-${{ runner.os }}-${{ hashFiles('deno-lock.json') }}
-          restore-keys: |
-             deno-${{ runner.os }}-${{ hashFiles('deno-lock.json') }}
-             deno-${{ runner.os }}-
-             deno-
-      - uses: denolib/setup-deno@master
-        with:
-          deno-version: 0.x
-      - run: npm install
-      - run: npm run build
-      - run: npm run test:deno
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+    - name: Cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.cache/deno
+        key: deno-${{ runner.os }}-${{ hashFiles('deno-lock.json') }}
+        restore-keys: |
+           deno-${{ runner.os }}-${{ hashFiles('deno-lock.json') }}
+           deno-${{ runner.os }}-
+           deno-
+    - uses: denolib/setup-deno@master
+      with:
+        deno-version: 0.x
+    - run: npm install
+    - run: npm run build
+    - run: npm run test:deno
 
   trigger_publish:
     runs-on: ubuntu-latest
@@ -65,36 +65,64 @@ jobs:
       - test_node
       - test_deno
     steps:
+    - name: Dump GitHub context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
+    - name: Dump env context
+      env:
+        ENV_CONTEXT: ${{ toJson(env) }}
+      run: echo "$ENV_CONTEXT"
+    - name: Dump job context
+      env:
+        JOB_CONTEXT: ${{ toJson(job) }}
+      run: echo "$JOB_CONTEXT"
+    - name: Dump steps context
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: echo "$STEPS_CONTEXT"
+    - name: Dump runner context
+      env:
+        RUNNER_CONTEXT: ${{ toJson(runner) }}
+      run: echo "$RUNNER_CONTEXT"
+    - name: Dump strategy context
+      env:
+        STRATEGY_CONTEXT: ${{ toJson(strategy) }}
+      run: echo "$STRATEGY_CONTEXT"
+    - name: Dump matrix context
+      env:
+        MATRIX_CONTEXT: ${{ toJson(matrix) }}
+      run: echo "$MATRIX_CONTEXT"
 
-      - name: Get version on master
-        id: v_master
-        uses: garronej/github_actions_toolkit@master
-        with: 
-          action_name: get_package_json_version
-          owner: ${{github.repository_owner}}
-          repo: ${{github.event.repository.name}}
-          branch: master
+    - name: Get version on master
+      id: v_master
+      uses: garronej/github_actions_toolkit@master
+      with: 
+        action_name: get_package_json_version
+        owner: ${{github.repository_owner}}
+        repo: ${{github.event.repository.name}}
+        branch: master
 
-      - name: Get version on dev
-        id: v_dev
-        uses: garronej/github_actions_toolkit@master
-        with: 
-          action_name: get_package_json_version
-          owner: ${{github.repository_owner}}
-          repo: ${{github.event.repository.name}}
-          branch: dev
+    - name: Get version on dev
+      id: v_dev
+      uses: garronej/github_actions_toolkit@master
+      with: 
+        action_name: get_package_json_version
+        owner: ${{github.repository_owner}}
+        repo: ${{github.event.repository.name}}
+        branch: dev
 
-      - name: 'Trigger the ''publish'' workflow' 
-        if: ${{env.PAT}} != '' && steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0'
-        uses: garronej/github_actions_toolkit@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }} 
-        with:
-          action_name: dispatch_event
-          owner: ${{github.repository_owner}}
-          repo: ${{github.event.repository.name}}
-          event_type: publish
-          client_payload_json: '{ "from_version": "${{steps.v_master.outputs.version}}", "to_version": "${{steps.v_master.outputs.version}}" }'
+    - name: 'Trigger the ''publish'' workflow' 
+      if: ${{env.PAT}} != '' && steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0'
+      uses: garronej/github_actions_toolkit@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }} 
+      with:
+        action_name: dispatch_event
+        owner: ${{github.repository_owner}}
+        repo: ${{github.event.repository.name}}
+        event_type: publish
+        client_payload_json: '{ "from_version": "${{steps.v_master.outputs.version}}", "to_version": "${{steps.v_master.outputs.version}}" }'
 
 
 
