@@ -7,7 +7,7 @@ import { myObject } from "..";
 assert(
     inDepth.same(
         myObject, 
-        { "p": "foo" }
+        { "p": "FOO" }
     )
 );
 

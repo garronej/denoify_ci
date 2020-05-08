@@ -1,2 +1,4 @@
 
-export const myObject= { "p": "foo" };
+import { toUpperCase } from "./tools/toUpperCase";
+
+export const myObject= { "p": toUpperCase("foo") };

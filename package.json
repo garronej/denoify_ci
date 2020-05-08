@@ -22,7 +22,8 @@
     "author": "u/#{USER_OR_ORG}#",
     "license": "MIT",
     "files": [
-        "/dist"
+        "/dist/*.{d.ts,js,js.map}",
+        "/dist/tools/*.{d.ts,js,js.map}"
     ],
     "keywords": [],
     "homepage": "https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#",
