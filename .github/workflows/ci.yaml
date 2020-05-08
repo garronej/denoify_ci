@@ -111,6 +111,10 @@ jobs:
         owner: ${{github.repository_owner}}
         repo: ${{github.event.repository.name}}
         branch: dev
+    - name: Dump steps context
+      env:
+        STEPS_CONTEXT: ${{ toJson(steps) }}
+      run: echo "$STEPS_CONTEXT"
 
     #- name: 'Trigger the ''publish'' workflow' 
     #  if: ${{ !env.PAT && steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0' }}
@@ -128,7 +132,7 @@ jobs:
     - name: Test passing json 
       uses: actions/hello-world-javascript-action@master
       with:
-        who-to-greet: ${{format('{{"from_version":"{0}","to_version":"{1}"}}',steps.v_master.outputs.version,steps.v_master.outputs.version)}}
+        who-to-greet: ${{format('{{"from_version":"{0}","to_version":"{1}"}}',steps.v_master.outputs.version,steps.v_dev.outputs.version)}}
 
 
 
