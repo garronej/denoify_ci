@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Update CHANGELOG.md
+      if: ${{ !!github.event.client_payload.from_version }}
       uses: garronej/github_actions_toolkit@master
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
