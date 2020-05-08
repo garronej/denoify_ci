@@ -16,7 +16,8 @@
         "test": "npm run test:node && npm run test:deno",
         "denoify": "npx denoify",
         "enable_short_import_path:npm": "npm run build && npx denoify_enable_short_npm_import_path",
-        "enable_short_import_path:deno": "npm run build && npx denoify_enable_short_deno_import_path"
+        "enable_short_import_path:deno": "npm run build && npx denoify_enable_short_deno_import_path",
+        "clean": "rm -rf dist deno_dist node_modules mod.ts package-lock.json"
     },
     "author": "u/#{USER_OR_ORG}#",
     "license": "MIT",
