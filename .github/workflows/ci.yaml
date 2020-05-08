@@ -116,6 +116,17 @@ jobs:
         STEPS_CONTEXT: ${{ toJson(steps) }}
       run: echo "$STEPS_CONTEXT"
 
+
+    - name: Test passing json 
+      uses: actions/hello-world-javascript-action@master
+      with:
+        who-to-greet: ${{format('{{"from_version":"{0}","to_version":"{1}"}}',github.job,'0.0.1')}}
+
+    - name: Test passing json 
+      uses: actions/hello-world-javascript-action@master
+      with:
+        who-to-greet: ${{format('{{"from_version":"{0}","to_version":"{1}"}}',steps.v_master.outputs.version,steps.v_master.outputs.version)}}
+
     - name: 'Trigger the ''publish'' workflow' 
       if: ${{ !env.PAT && steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0' }}
       uses: garronej/github_actions_toolkit@master
@@ -128,7 +139,6 @@ jobs:
         event_type: publish
         #client_payload_json: '{ "from_version": "${{steps.v_master.outputs.version}}", "to_version": "${{steps.v_master.outputs.version}}" }'
         client_payload_json: ${{format('{{"from_version":"{0}","to_version":"{1}"}}',steps.v_master.outputs.version,steps.v_master.outputs.version)}}
-
 
 
 
