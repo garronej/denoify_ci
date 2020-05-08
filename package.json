@@ -22,8 +22,7 @@
     "author": "u/#{USER_OR_ORG}#",
     "license": "MIT",
     "files": [
-        "/dist/lib",
-        "/src/lib"
+        "/dist"
     ],
     "keywords": [],
     "homepage": "https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#",
