@@ -6,8 +6,8 @@
         "type": "git",
         "url": "git://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#.git"
     },
-    "main": "./dist/lib/index.js",
-    "types": "./dist/lib/index.d.ts",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
     "scripts": {
         "tsc": "npx tsc",
         "build": "npm run tsc && npm run denoify",
