@@ -7,14 +7,29 @@ import { Deferred } from "evt/dist/tools/Deferred";
 
 (async () => {
 
-    for (const name of ["myFunction", "myObject"]) {
+    if (!!process.env.FORK) {
+
+        process.once("unhandledRejection", error => { throw error; });
+
+        require(process.env.FORK);
+
+        return;
+
+    }
+
+    for (const name of [
+        "myFunction",
+        "myObject"
+    ]) {
 
         console.log(`Running: ${name}`);
 
         const dExitCode = new Deferred<number>();
 
         child_process.fork(
-            path.join(__dirname, name + ".js")
+            __filename,
+            undefined,
+            { "env": { "FORK": path.join(__dirname, `${name}.js`) } }
         )
             .on("message", console.log)
             .once("exit", code => dExitCode.resolve(code))
@@ -22,7 +37,7 @@ import { Deferred } from "evt/dist/tools/Deferred";
 
         const exitCode = await dExitCode.pr;
 
-        if( exitCode !== 0 ){
+        if (exitCode !== 0) {
             console.log(`${name} exited with error code: ${exitCode}`);
             process.exit(exitCode);
         }
@@ -30,6 +45,5 @@ import { Deferred } from "evt/dist/tools/Deferred";
         console.log("\n");
 
     }
-
 
 })();
