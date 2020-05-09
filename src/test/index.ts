@@ -29,7 +29,7 @@ import { Deferred } from "evt/dist/tools/Deferred";
         child_process.fork(
             __filename,
             undefined,
-            { "env": { "FORK": path.join(__dirname, `${name}.js`) } }
+            { "env": { "FORK": path.join(__dirname, name) } }
         )
             .on("message", console.log)
             .once("exit", code => dExitCode.resolve(code))
