@@ -4,12 +4,17 @@ jobs:
   template_initialization:
     runs-on: ubuntu-latest
     steps:
-
+      
       - name: Checks that module name use _ instead of -
-        if: contains(github.repository.name,'_')
         run: |
-          echo "If you want to be able to publish on deno.land your module name must use lodash (_) in place of dashes (-) "
-          sh -c "exit 1"
+          if [ "$REPO_NAME_CONTAINS_DASHES" = "true" ]; then
+            echo "Your module name should not contain dashes ( if you want to be able to publish on deno.land )"
+            echo "Rename your repo removing all the occurrences of '-' by '_' then re-run this workflow"
+            false
+          fi
+        env: 
+          REPO_NAME_CONTAINS_DASHES: ${{ contains(github.event.repository.name,'-') }}
+
       - uses: actions/checkout@v2
       - name: Replace tokens in README.MD and package.json
         uses: cschleiden/replace-tokens@v1
