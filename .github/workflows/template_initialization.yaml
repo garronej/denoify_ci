@@ -3,7 +3,6 @@ on: create
 jobs:
   template_initialization:
     runs-on: ubuntu-latest
-    if: github.event.ref == 'dev' && github.event.ref_type == 'branch'
     steps:
 
       - name: Checks that module name use _ instead of -
@@ -27,6 +26,8 @@ jobs:
           npm install --save-dev typescript
           npm install --save-dev evt
           rm package-lock.json
+      - name: Remove this workflow, it only needs to be run once.
+        run: rm .github/workflows/template_initialization.yaml
       - name: Commit files
         run: |
           git config --local user.email "denoify_ci@github.com"
