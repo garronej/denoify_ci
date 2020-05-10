@@ -32,13 +32,17 @@ jobs:
           npm install --save-dev typescript
           npm install --save-dev evt
           rm package-lock.json
-      - name: Remove this workflow, it only needs to be run once.
-        run: rm .github/workflows/template_initialization.yaml
+      - name: Remove this workflow and enable ci.yaml.
+        run: |
+          cd .github/workflows/
+          rm template_initialization.yaml
+          mv ci.yaml.disabled ci.yaml
+          cd ../..
       - name: Commit files
         run: |
           git config --local user.email "denoify_ci@github.com"
           git config --local user.name "denoify_ci"
-          git commit -am "woosh, the template is now ${{ github.event.repository.name }}"
+          git commit -am "⚡ ${{ github.event.repository.name }}"
       - name: Push changes
         uses: ad-m/github-push-action@v0.5.0
         with:
