@@ -8,8 +8,8 @@ jobs:
       - name: Checks that module name use _ instead of -
         run: |
           if [ "$REPO_NAME_CONTAINS_DASHES" = "true" ]; then
-            echo "Your module name should not contain dashes ( if you want to be able to publish on deno.land )"
-            echo "Rename your repo replacing all the occurrences of '-' by '_' then re-run all jobs"
+            echo "Your module name should not contain dashes, you won't be allowed to publish on deno.land"
+            echo "Please delete this repo and create a new one replacing all the occurrences of '-' by '_'"
             false
           fi
           true
