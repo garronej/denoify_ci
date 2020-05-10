@@ -9,7 +9,7 @@ jobs:
         run: |
           if [ "$REPO_NAME_CONTAINS_DASHES" = "true" ]; then
             echo "Your module name should not contain dashes ( if you want to be able to publish on deno.land )"
-            echo "Rename your repo removing all the occurrences of '-' by '_' then re-run this workflow"
+            echo "Rename your repo replacing all the occurrences of '-' by '_' then re-run this workflow"
             false
           fi
         env: 
