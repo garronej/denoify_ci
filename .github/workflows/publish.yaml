@@ -7,6 +7,16 @@ jobs:
     name: Update CHANGELOG.md and make sure package.json and package-lock.json matches.
     runs-on: ubuntu-latest
     steps:
+    - name: Synchronize package.json  and package-lock.json version if needed.
+      uses: garronej/github_actions_toolkit@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }} 
+      with:
+        action_name: sync_package_and_package_lock_version
+        owner: ${{github.repository_owner}}
+        repo: ${{github.event.client_payload.repo}}
+        branch: dev
+        commit_author_email: denoify_ci@github.com
     - name: Update CHANGELOG.md
       if: ${{ !!github.event.client_payload.from_version }}
       uses: garronej/github_actions_toolkit@master
@@ -20,16 +30,6 @@ jobs:
         branch_ahead: dev
         commit_author_email: denoify_ci@github.com
         exclude_commit_from_author_names_json: '["denoify_ci"]'
-    - name: Synchronize package.json  and package-lock.json version if needed.
-      uses: garronej/github_actions_toolkit@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT }} 
-      with:
-        action_name: sync_package_and_package_lock_version
-        owner: ${{github.repository_owner}}
-        repo: ${{github.event.client_payload.repo}}
-        branch: dev
-        commit_author_email: denoify_ci@github.com
       
   publish_npm:
     runs-on: ubuntu-latest
