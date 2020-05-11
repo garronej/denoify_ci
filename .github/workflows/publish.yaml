@@ -3,7 +3,8 @@ on:
     types: publish
 
 jobs:
-  update_changelog:
+  update_changelog_and_sync_package_lock_version:
+    name: Update CHANGELOG.md and make sure package.json and package-lock.json matches.
     runs-on: ubuntu-latest
     steps:
     - name: Update CHANGELOG.md
