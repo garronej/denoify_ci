@@ -42,7 +42,7 @@ jobs:
         run: |
           git config --local user.email "denoify_ci@github.com"
           git config --local user.name "denoify_ci"
-          git commit -am "⚡ ${{ github.event.repository.name }}"
+          git commit -am "Replacing the template's placeholders"
       - name: Push changes
         uses: ad-m/github-push-action@v0.5.0
         with:
