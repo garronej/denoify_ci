@@ -4,7 +4,7 @@ on:
 
 jobs:
   update_changelog_and_sync_package_lock_version:
-    name: Update CHANGELOG.md and make sure package.json and package-lock.json matches.
+    name: Update CHANGELOG.md and make sure package.json and package-lock.json versions matches.
     runs-on: ubuntu-latest
     steps:
     - name: Synchronize package.json  and package-lock.json version if needed.
