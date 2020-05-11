@@ -11,6 +11,7 @@ jobs:
 
   test_node:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.created }}
     strategy:
       matrix:
         node: [ '13', '12', '11', '10', '8' ]
@@ -26,6 +27,7 @@ jobs:
 
   test_deno:
     runs-on: ubuntu-latest
+    if: ${{ !github.event.created }}
     name: test with Deno
     steps: 
 
