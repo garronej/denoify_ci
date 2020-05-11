@@ -76,7 +76,7 @@ jobs:
         action_name: get_package_json_version
         owner: ${{github.repository_owner}}
         repo: ${{github.event.repository.name}}
-        branch: dev
+        branch: ${{ github.sha }}
     - name: Dump steps context
       env:
         STEPS_CONTEXT: ${{ toJson(steps) }}
