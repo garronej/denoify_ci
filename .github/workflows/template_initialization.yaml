@@ -19,7 +19,7 @@ jobs:
           false
         fi
         if [ "$IS_VALID_DENO_MODULE_NAME" = "false" ]; then
-          echo $MODULE_NAME" is not a valid deno module name ( replace '-' not allowed, replace by '_' )"
+          echo $MODULE_NAME" is not a valid deno module name ( '-' not allowed, replace by '_' )"
           false
         fi
         if [ "$IS_AVAILABLE_ON_NPM" = "false" ]; then
