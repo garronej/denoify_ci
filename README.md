@@ -58,8 +58,8 @@ import { myObject } from 'https://deno.land/x/#{REPO_NAME}#@0.1.0/myObject.ts';
 
 ## CI
 
-This repository has has continus integration/deployment implemented via GitHub Action. 
+This repository has has continus integration and automatic publishing implemented via GitHub Action. 
 
-Refer to [CI.md](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/blob/dev/CI.md) for instructions. 
+Refer to [TEMPLATE_README.md](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/blob/dev/TEMPLATE_README.md) for instructions. 
 
 
