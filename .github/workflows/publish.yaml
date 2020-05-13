@@ -110,7 +110,7 @@ jobs:
         WAS_ALREADY_PUBLISHED: ${{ steps.id1.outputs.was_already_published }}
       run: |
        if [ "$WAS_ALREADY_PUBLISHED" = "true" ]; then
-         echo "The module is already published or pending for approval on deno.land"
+         echo "The module is already published, if you can't see it yet it means that the PR hasn't been merged yet. See https://github.com/denoland/deno_website2/pulls"
          false
        fi
        echo "A pull request has been issued to add the module: https://github.com/denoland/deno_website2/pulls"
