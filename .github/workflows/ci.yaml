@@ -45,7 +45,7 @@ jobs:
            deno-
     - uses: denolib/setup-deno@master
       with:
-        deno-version: 0.x
+        deno-version: 1.x
     - run: npm install
     - run: npm run build
     - run: npm run test:deno
@@ -69,6 +69,7 @@ jobs:
         owner: ${{github.repository_owner}}
         repo: ${{github.event.repository.name}}
         branch: master
+        compare_to_version: '0.0.0'
 
     - name: Get version on dev
       id: v_dev
@@ -78,9 +79,10 @@ jobs:
         owner: ${{github.repository_owner}}
         repo: ${{github.event.repository.name}}
         branch: ${{ github.sha }}
+        compare_to_version: ${{steps.v_master.outputs.version || '0.0.0'}}
 
     - name: 'Trigger the ''publish'' workflow' 
-      if: ${{ !!env.PAT && steps.v_master.outputs.version != steps.v_dev.outputs.version && steps.v_dev.outputs.version != '0.0.0' }}
+      if: ${{ !!env.PAT && steps.v_dev.outputs.compare_result == '1' }}
       uses: garronej/github_actions_toolkit@master
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
