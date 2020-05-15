@@ -37,7 +37,7 @@
     "files": [
         "/dist/*.{d.ts,js,js.map}",
         "/dist/tools/",
-        "/dist/esm/"
+        "/dist/zz_esm/"
     ],
     "keywords": [],
     "homepage": "https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#",
