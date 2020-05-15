@@ -10,7 +10,7 @@
     "types": "./dist/index.d.ts",
     "scripts": {
         "test:node": "node ./dist/test",
-        "test:deno": "deno run ./deno_dist/test/deno_index.ts",
+        "test:deno": "deno run --allow-read ./deno_dist/test/deno_index.ts",
         "test": "npm run test:node && npm run test:deno",
 
 
