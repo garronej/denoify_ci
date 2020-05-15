@@ -74,7 +74,7 @@ Expose a global ( wilder browser support):
 Or import as an ES module:  
 
 ```html
-<script type="module" src="//unpkg.com/#{REPO_NAME}#/zzz_esm/index.js"></script>
+<script type="module" src="//unpkg.com/#{REPO_NAME}#/zz_esm/index.js"></script>
 <script>
   import { myFunction, myObject } from '#{REPO_NAME}#';
 </script>
