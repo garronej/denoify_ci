@@ -45,6 +45,10 @@ jobs:
       run: ls -lR
     - name: Publishing on NPM
       run: |
+        if [ "$(npm show $MODULE_NAME version)" = "$VERSION" ]; then
+          echo "This version is already published"
+          exit 0
+        fi
         if [ "$NPM_TOKEN" = "" ]; then
           echo "Can't publish on NPM, You must first create a secret called NPM_TOKEN that contains your NPM auth token. https://help.github.com/en/actions/automating-your-workflow-with-github-actions/creating-and-using-encrypted-secrets"
           false
@@ -54,24 +58,24 @@ jobs:
         rm .npmrc
       env:
         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        MODULE_NAME: ${{ github.event.client_payload.repo }}
+        VERSION: ${{ github.event.client_payload.to_version }}
   publish_deno:
     runs-on: ubuntu-latest
     needs: update_changelog_and_sync_package_lock_version
     steps:
     - uses: actions/checkout@v2
-    - name: Remove master branch
-      continue-on-error: true
-      run: git push origin :master
-    - name: Create the new master branch
-      run: |
-        git branch master
-        git checkout master
-        git push origin master
     - uses: actions/setup-node@v1
     - run: npm install
     - run: npm run enable_short_import_path:deno
       env:
         DRY_RUN: "0"
+
+    - name: Remove master branch
+      continue-on-error: true
+      run: git push origin :master
+    - name: Create the new master branch
+      run: git checkout -b master
     - name: Commit changes
       run: |
         git config --local user.email "denoify_ci@github.com"

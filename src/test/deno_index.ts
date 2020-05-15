@@ -3,3 +3,4 @@
 
 import "./myFunction";
 import "./myObject";
+import "./getProjectRoot";
