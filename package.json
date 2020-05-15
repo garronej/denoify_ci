@@ -10,7 +10,7 @@
     "types": "./dist/index.d.ts",
     "scripts": {
         "test:node": "node ./dist/test",
-        "test:deno": "deno run ./deno_dist/test/deno_index.ts",
+        "test:deno": "deno run --allow-read ./deno_dist/test/deno_index.ts",
         "test": "npm run test:node && npm run test:deno",
 
 
@@ -20,7 +20,7 @@
 
         "cdn:bundle:.js": "simplifyify dist/index.js -s #{REPO_NAME}# -o dist/umd_bundle.js --debug --bundle",
         "cdn:bundle:.min.js": "terser dist/umd_bundle.js -cmo dist/umd_bundle.min.js",
-        "cdn:bundle": "npm run bundle:.js && npm run bundle:.min.js",
+        "cdn:bundle": "npm run cdn:bundle:.js && npm run cdn:bundle:.min.js",
         "cdn:esm": "tsc -p tsconfig.esm.json",
         "cdn": "npm run cdn:bundle && npm run cdn:esm",
 

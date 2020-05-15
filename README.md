@@ -68,7 +68,7 @@ The first time the module is published a pull request that adds your repo to the
 ## Changing the directory structures.
 
 All your sources files must remain inside the ``src`` dir, you can change how things are organized
-but don't forget to update your ``package.json`` ``main``, ``type`` and ``files`` field when appropriate!
+but don't forget to update your ``package.json`` ``main``, ``type`` and ``files`` fields and ``tsconfig.esm.json`` ``include`` field when appropriate!
 
 ## Swipe the image in README.md
 
