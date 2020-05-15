@@ -27,6 +27,13 @@ Good stuffs that come with using this template:
   ``import {...} from "my_module/dist/theFile"`` 
 - CDN distribution for importing from an ``.html`` file with a ``<script>`` tag.
 
+# Disclaimer 
+
+[Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno is still
+very new, depending on what you have in mind it might require a lot of extra work to get your code 
+to comply with the requirements it sets.  
+If you are interested by the automation but are willing to drop Deno support use [ts_ci](https://github.com/garronej/ts_ci) instead of this template.
+
 # How to use
 
 ## Fork it ( click use the template )
