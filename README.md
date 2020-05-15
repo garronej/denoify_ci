@@ -114,8 +114,11 @@ As a result this won't work in production:
 
 ``src/index.ts``
 ```typescript
-const str = require("fs").readFileSync(
-    require("path").join(__filename,"..", "package.json")
+import * as fs from "fs";
+import * as path from "path";
+
+const str = fs.readFileSync(
+    path.join(__filename,"..", "package.json")
 ).toString("utf8");
 ```
 
@@ -125,9 +128,12 @@ You'll have to do:
 
 ``src/index.ts``
 ```typescript
+import * as fs from "fs";
+import * as path from "path";
 import { getProjectRoot } from "./tools/getProjectRoot";
-const str = require("fs").readFileSync(
-    require("path").join(getProjectRoot(),"package.json")
+
+const str = fs.readFileSync(
+    path.join(getProjectRoot(),"package.json")
 ).toString("utf8");
 ```
 
