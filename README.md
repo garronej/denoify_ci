@@ -85,6 +85,10 @@ If your project does not target the browser or if you are not interested in offe
 - Remove ``/dist/esm/`` entry from ``files`` in ``package.json`` 
 - Remove ``simplifyify`` and ``terser`` from dev dependencies.
 
+## Customizing the Badges
+
+You can [shields.io](https://shields.io) to create badges on metrics you would like to showcase.
+
 ## Remove unwanted dev dependencies.
 
 Dev dependencies that are not required by the template, ( you can safely remove them, if you don't use them ):
