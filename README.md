@@ -29,7 +29,7 @@ Good stuffs that come with using this template:
 
 # Disclaimer 
 
-[Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno is still
+[Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno, is still
 very new, depending on what you have in mind it might require a lot of extra work to get your code 
 to comply with the requirements it sets.  
 If you are interested by the automation that this template features but don't care bout Deno support use [ts_ci](https://github.com/garronej/ts_ci) this repo.
