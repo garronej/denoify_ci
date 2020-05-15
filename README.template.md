@@ -62,7 +62,7 @@ import { myObject } from 'https://deno.land/x/#{REPO_NAME}#/myObject.ts';
 
 ## Import from CDN
 
-Expose a global ( wilder browser support):  
+Expose a global ( wider browser support):  
 
 ```html
 <script src="//unpkg.com/#{REPO_NAME}#/umd_bundle.min.js"></script>
