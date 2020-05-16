@@ -65,17 +65,18 @@ jobs:
     needs: update_changelog_and_sync_package_lock_version
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Remove branch 'latest' 
+      continue-on-error: true
+      run: |
+        git branch -d latest || true
+        git push origin :latest
     - uses: actions/setup-node@v1
     - run: npm install
     - run: npm run enable_short_import_path:deno
       env:
         DRY_RUN: "0"
-
-    - name: Remove master branch
-      continue-on-error: true
-      run: git push origin :master
-    - name: Create the new master branch
-      run: git checkout -b master
     - name: Commit changes
       run: |
         git config --local user.email "denoify_ci@github.com"
