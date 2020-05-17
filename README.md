@@ -149,7 +149,7 @@ const str = fs.readFileSync(
 
 # Video demo
 
-This is a video demo is showcasing [ts_ci](https://github.com/garronej/ts_ci), a similar template repo without the Deno support.
+This is a video demo is showcasing [ts_ci](https://github.com/garronej/ts_ci), a similar template repo but without the Deno support.
 
 [![Watch the video](https://user-images.githubusercontent.com/6702424/82117367-c32ea700-976f-11ea-93f9-ec056aebc528.png)](https://youtu.be/Q5t-yP2PvPA)
 
