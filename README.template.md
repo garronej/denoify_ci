@@ -35,8 +35,8 @@ import { myFunction, myObject } from '#{REPO_NAME}#';
 Specific import
 
 ```typescript
-import { myFunction } from '#{REPO_NAME}#/myFunction'
-import { myObject } from '#{REPO_NAME}#/myObject'
+import { myFunction } from '#{REPO_NAME}#/myFunction';
+import { myObject } from '#{REPO_NAME}#/myObject';
 ```
 
 ## Deno:
