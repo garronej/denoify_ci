@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Synchronize package.json  and package-lock.json version if needed.
-      uses: garronej/github_actions_toolkit@master
+      uses: garronej/github_actions_toolkit@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
@@ -19,7 +19,7 @@ jobs:
         commit_author_email: denoify_ci@github.com
     - name: Update CHANGELOG.md
       if: ${{ !!github.event.client_payload.from_version }}
-      uses: garronej/github_actions_toolkit@master
+      uses: garronej/github_actions_toolkit@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
@@ -37,7 +37,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
-    - run: npm install
+    - run: npm ci
     - run: npm run enable_short_import_path:npm
       env:
         DRY_RUN: "0"
@@ -73,7 +73,7 @@ jobs:
         git branch -d latest || true
         git push origin :latest
     - uses: actions/setup-node@v1
-    - run: npm install
+    - run: npm ci
     - run: npm run enable_short_import_path:deno
       env:
         DRY_RUN: "0"
@@ -104,7 +104,7 @@ jobs:
     steps:
     - name: Create a PR on denoland/deno_website2 to add ${{github.event.client_payload.repo}} if not already done.
       id: id1
-      uses: garronej/github_actions_toolkit@master
+      uses: garronej/github_actions_toolkit@v1
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:

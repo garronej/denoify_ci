@@ -6,10 +6,9 @@
     <i>#{DESC}#</i>
     <br>
     <br>
-    <img src="https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/workflows/ci/badge.svg?branch=dev">
+    <img src="https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#/workflows/ci/badge.svg?branch=develop">
     <img src="https://img.shields.io/bundlephobia/minzip/#{REPO_NAME}#">
     <img src="https://img.shields.io/npm/dw/#{REPO_NAME}#">
-    <img src="https://img.shields.io/github/commit-activity/w/garronej/#{REPO_NAME}#">
     <img src="https://img.shields.io/npm/l/#{REPO_NAME}#">
 </p>
 <p align="center">
@@ -27,7 +26,7 @@
 ## Node:
 
 ```bash
-> npm install --save #{REPO_NAME}#
+$ npm install --save #{REPO_NAME}#
 ```
 ```typescript
 import { myFunction, myObject } from '#{REPO_NAME}#'; 
@@ -60,14 +59,14 @@ import { myFunction } from 'https://deno.land/x/#{REPO_NAME}#/myFunction.ts';
 import { myObject } from 'https://deno.land/x/#{REPO_NAME}#/myObject.ts';
 ```
 
-## Import from HTML with CDN
+## Import from HTML, with CDN
 
-Expose a global ( wider browser support ):  
+Expose a global (wider browser support):  
 
 ```html
 <script src="//unpkg.com/#{REPO_NAME}#/umd_bundle.min.js"></script>
 <script>
-  var { myFunction, myObject } = window['#{REPO_NAME}#'];
+  var myFunction = '#{REPO_NAME}#'.myFunction;
 </script>
 ```
 
