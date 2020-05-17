@@ -40,6 +40,8 @@ If you are interested by the automation that this template features but don't ca
 - If you are going to programmatically load files outside of the ``dis/`` directory ( like the ``package.json`` or files inside ``res/`` ) be mindful that the paths might not be the one you expect. [Details](#accessing-files-outside-the-dist-directory). 
 - The template does not support ``.npmignore`` ( it uses ``package.json`` ``files`` which is [safer](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d) ).
 - The template does not support ``.npmrc``.
+- In rare occasions the workflow in charge of performing the initial configuration does not fire up.
+  If it is the case for you please delete the repo you just created and start over again.
 
 # How to use
 
