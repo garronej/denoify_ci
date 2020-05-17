@@ -66,7 +66,7 @@ Expose a global (wider browser support):
 ```html
 <script src="//unpkg.com/#{REPO_NAME}#/umd_bundle.min.js"></script>
 <script>
-  var myFunction = '#{REPO_NAME}#'.myFunction;
+  var myFunction = #{REPO_NAME}#.myFunction;
 </script>
 ```
 
