@@ -104,7 +104,7 @@ jobs:
     steps:
     - name: Create a PR on denoland/deno_website2 to add ${{github.event.client_payload.repo}} if not already done.
       id: id1
-      uses: garronej/github_actions_toolkit@v1
+      uses: garronej/github_actions_toolkit@master
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
