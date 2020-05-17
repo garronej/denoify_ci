@@ -2,10 +2,10 @@ name: ci
 on:
   push:
     branches:
-      - dev
+      - develop
   pull_request:
     branches:
-      - dev
+      - develop
 
 jobs:
 
@@ -71,8 +71,8 @@ jobs:
         branch: master
         compare_to_version: '0.0.0'
 
-    - name: Get version on dev
-      id: v_dev
+    - name: Get version on develop
+      id: v_develop
       uses: garronej/github_actions_toolkit@master
       with: 
         action_name: get_package_json_version
@@ -82,7 +82,7 @@ jobs:
         compare_to_version: ${{steps.v_master.outputs.version || '0.0.0'}}
 
     - name: 'Trigger the ''publish'' workflow' 
-      if: ${{ !!env.PAT && steps.v_dev.outputs.compare_result == '1' }}
+      if: ${{ !!env.PAT && steps.v_develop.outputs.compare_result == '1' }}
       uses: garronej/github_actions_toolkit@master
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
@@ -96,7 +96,7 @@ jobs:
             format(
               '{{"from_version":"{0}","to_version":"{1}","repo":"{2}"}}',
               steps.v_master.outputs.version,
-              steps.v_dev.outputs.version,
+              steps.v_develop.outputs.version,
               github.event.repository.name
             )
           }}
