@@ -55,8 +55,9 @@ If you are interested by the automation that this template features but don't ca
 
 Once you've done that a GitHub action workflow will set up the ``README.md`` and the ``package.json`` for you, wait a couple of minutes for it to complete ( a bot will push ). You can follow the job advancement in the "Action" tab.
 
-Each time you will push changes ``npm test`` will be run on remote docker containers against multiple Node 
-and Deno versions if everything passes you will get a green ``ci`` badges in your readme.
+Each time you will push changes ``npm run test:node`` and ``npm run test:deno`` will be run on remote docker 
+containers against multiple Node and Deno versions, if everything passes you will get a green ``ci`` badges 
+in your readme.
 
 ## Enable automatic publishing.
 
