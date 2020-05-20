@@ -68,13 +68,13 @@ jobs:
       with:
         fetch-depth: 0
         ref: develop
-    - name: Remove .github directory, useless on 'latest' branch
+    - name: Remove .github directory, useless on 'master' branch
       run: rm -r .github
     - name: Remove branch 'master' 
       continue-on-error: true
       run: |
         git branch -d master || true
-        git push origin :latest
+        git push origin :master
     - name: Create the new 'master' branch
       run: |
         git branch master
