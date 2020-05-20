@@ -27,22 +27,6 @@ Besides, good stuff that comes with using this template:
   ``import {...} from "my_module/dist/theFile"`` 
 - CDN distribution for importing from ``.html`` files with a ``<script>`` tag.
 
-# Important notices
-
-- [Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno, is still
-very new, depending on what you have in mind it might require a lot of extra work to get your code 
-to comply with the requirements it sets.  
-If you are interested by the automation that this template features but don't care bout Deno support use [ts_ci](https://github.com/garronej/ts_ci) istead of this repo.
-- You probably want to "Use this template" ( the green button ) instead of forking the repo.  
-- The files to include in the NPM bundle are cherry-picked using the ``package.json`` ``files`` field.  
-  If you don't want to bother and includes everything just remove the ``files`` field from the ``package.json``
-  otherwise remember, when you add a subdirectory in ``src/``, to update the ``package.json`` ``files``.
-- If you are going to programmatically load files outside of the ``dis/`` directory ( like the ``package.json`` or files inside ``res/`` ) be mindful that the paths might not be the one you expect. [Details](#accessing-files-outside-the-dist-directory). 
-- The template does not support ``.npmignore`` ( it uses ``package.json`` ``files`` which is [safer](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d) ).
-- The template does not support ``.npmrc``.
-- In rare occasions the workflow in charge of performing the initial configuration does not fire up.
-  If it is the case for you please delete the repo you just created and start over again.
-
 # How to use
 
 ## Fork it ( click use the template )
@@ -73,11 +57,27 @@ Go to repository ``Settings`` tab, then ``Secrets`` you will need to add two new
 To trigger publishing edit the ``package.json`` ``version`` field ( ``0.0.0``-> ``0.0.1`` for example) then push changes... that's all !
 The publishing will actually be performed only if ``npm test`` passes.  
 
-The first time the module is published a pull request that adds your repo to the deno.land/x database will be created on your behalf [here](https://github.com/denoland/deno_website2/pulls). Note that every module needs to be approved by a deno maintainer, it is often Ryan Dahl that merges, try avoiding waisting their time by submitting modules like ``fizz_buzz_test_3``.
+The first time the module is published a pull request that adds your repo to the deno.land/x database will be created on your behalf [here](https://github.com/denoland/deno_website2/pulls). Note that every module needs to be approved by a deno maintainer, it is often Ryan Dahl that merges, knowing that, avoid wasting their time by publishing ``fizz_buzz_test_3`` modules.
+
+# Few things you need to be aware of before getting started
+
+- [Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno, is still
+very new, depending on what you have in mind it might require a lot of extra work to get your code 
+to comply with the requirements it sets.  
+If you are interested by the automation that this template features but don't care bout Deno support checkout [ts_ci](https://github.com/garronej/ts_ci).
+- You probably want to "Use this template" ( the green button ) instead of forking the repo.  
+- The files to include in the NPM bundle are cherry-picked using the ``package.json`` ``files`` field.  
+  If you don't want to bother and includes everything just remove the ``files`` field from the ``package.json``
+  otherwise remember, when you add a subdirectory in ``src/``, to update the ``package.json`` ``files``.
+- Remember, when using ``fs`` that there is no node_modules directory in Deno. [Details](#accessing-files-on-the-disk).
+- The template does not support ``.npmignore`` ( it uses ``package.json`` ``files`` which is [safer](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d) ).
+- The template does not support ``.npmrc``.
+- In rare occasions the workflow in charge of performing the initial configuration does not fire up.
+  If it is the case for you please delete the repo you just created and start over again.
 
 # Customizations
 
-## Changing the directory structures.
+## Changing the directory structures
 
 All your source files must remain inside the ``src`` dir, you can change how things are organized
 but don't forget to update your ``package.json`` ``main``, ``type`` and ``files`` fields and ``tsconfig.esm.json`` ``include`` field when appropriate!
@@ -115,39 +115,37 @@ Must keep:
 
 You can use [shields.io](https://shields.io) to create badges on metrics you would like to showcase.
 
-# Accessing files outside the ``dist/`` directory
+# Accessing files on the disk.
 
-The drawback of having short import path is that the dir structure  
-is not exactly the same in production ( in the npm bundle, and on de branch used by Deno ) and in development.
+Keep in mind that in Deno there is no ``node_modules`` sitting on the disk at runtime.  
 
-The files and directories in ``dist/`` will be moved to the root of the project.
-
-As a result this won't work in production: 
+Let's assume for example that you would like to load a ``database.json`` file located 
+at the root of your project. You would write something like this:  
 
 ``src/index.ts``
 ```typescript
 import * as fs from "fs";
 import * as path from "path";
+import { TextDecoder } from "util";
 
-const str = fs.readFileSync(
-    path.join(__dirname, "..", "package.json")
-).toString("utf8");
+export function getDatabase(): Record<string,any> {
+    return JSON.parse(
+        new TextDecoder("utf-8").decode(
+            fs.readFileSync(
+                path.join(
+                    __dirname,
+                    "..", "database.json"
+                )
+            )
+        )
+    );
+}
 ```
 
-Because ``/dist/index.js`` will have been moved to ``/index.js``
-
-You'll have to do: 
-
-``src/index.ts``
-```typescript
-import * as fs from "fs";
-import * as path from "path";
-import { getProjectRoot } from "./tools/getProjectRoot";
-
-const str = fs.readFileSync(
-    path.join(getProjectRoot(),"package.json")
-).toString("utf8");
-```
+This will work on both Node and Deno when you run your tests but once 
+your module published this won’t work on Deno anymore for the same reason 
+it won’t work in the Browser, the ``database.json`` file is present 
+on the disk at runtime.  
 
 # Video demo
 
@@ -157,12 +155,12 @@ This is a video demo is showcasing [ts_ci](https://github.com/garronej/ts_ci), a
 
 # Examples of auto-generated readme:
 
-![serve php](https://user-images.githubusercontent.com/6702424/82119079-d34c8380-977b-11ea-986d-55c783ca076a.jpeg)
+![npmjs com](https://user-images.githubusercontent.com/6702424/82402717-70017080-9a5d-11ea-8137-0bfa9a139655.jpg)
 
 # Creating a documentation website for your project:
 
 I recommend [GitBook](https://www.gitbook.com), It enables you to write your documentation in markdown from their 
-website and get the markdown files synchronized with in your repo.
+website and get the markdown files synchronized with your repo.
 They will provide you with a nice website for which you can customize the domain name.  
 All this is covered by their free tier.  
 
@@ -171,7 +169,7 @@ Example:
 - [GitBook documentation website](https://docs.evt.land)
 
 I advise you to have a special directory at the root of your project where the markdown documentation files
-are stored. It is configured by placing a ``.netbook.yaml`` file at the root of the repo containing, for example:
+are stored. It is configured by placing a ``.gitbook.yaml`` file at the root of the repo containing, for example:
 ``root: ./docs/``
 
 PS: I am not affiliated with GitBook in any way.
@@ -192,5 +190,6 @@ And update your DNS:
 ![image](https://user-images.githubusercontent.com/6702424/82155473-7e8d3380-9875-11ea-9bba-115cbb3ef162.png)
 
 I personally use [Hurricane Electric](https://dns.he.net) free DNS servers because they support a lot of record types.
-If your provider does not support ``ALIAS``, however, you can use ``A`` records and manually enter the IP of GitHub servers.
+However, if your DNS provider does not support ``ALIAS``, you can use ``A`` records and manually enter the IP of GitHub servers.
 I let you consult the [GitHub Pages Documentation](https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain). 
+
