@@ -73,10 +73,15 @@ Expose a global (wider browser support):
 Or import as an ES module:  
 
 ```html
-<script type="module" src="//unpkg.com/#{REPO_NAME}#/zz_esm/index.js"></script>
-<script>
-  import { myFunction, myObject } from '#{REPO_NAME}#';
+<script type="module">
+  import { myFunction, myObject } from '//unpkg.com/#{REPO_NAME}#/zz_esm/index.js';
 </script>
 ```
 
+## Contribute
 
+```bash
+npm install
+npm run build
+npm test
+```
