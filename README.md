@@ -155,7 +155,7 @@ This is a video demo is showcasing [ts_ci](https://github.com/garronej/ts_ci), a
 
 # Examples of auto-generated readme:
 
-![npmjs com](https://user-images.githubusercontent.com/6702424/82402717-70017080-9a5d-11ea-8137-0bfa9a139655.jpg)
+![npmjs com-2](https://user-images.githubusercontent.com/6702424/82423673-663f3380-9a84-11ea-8b78-c64215851f00.jpg)
 
 # Creating a documentation website for your project:
 
