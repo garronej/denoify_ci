@@ -1,7 +1,7 @@
 
 import { myFunction } from "..";
 
-import { getPromiseAssertionApi } from "evt/dist/tools/testing/getPromiseAssertionApi";
+import { getPromiseAssertionApi } from "evt/tools/testing/getPromiseAssertionApi";
 
 const { mustResolve } = getPromiseAssertionApi({ "takeIntoAccountArraysOrdering": true});
 
