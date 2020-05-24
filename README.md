@@ -129,14 +129,13 @@ import { TextDecoder } from "util";
 
 export function getDatabase(): Record<string,any> {
     return JSON.parse(
-        new TextDecoder("utf-8").decode(
-            fs.readFileSync(
-                path.join(
-                    __dirname,
-                    "..", "database.json"
-                )
-            ) as Uint8Array
-        )
+        fs.readFileSync(
+            path.join(
+                __dirname,
+                "..", "database.json"
+            ),
+            "utf8"
+        ) as string
     );
 }
 ```
