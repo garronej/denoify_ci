@@ -146,7 +146,7 @@ your module published this won’t work on Deno anymore for the same reason
 it won’t work in the Browser, the ``database.json`` file is present 
 on the disk at runtime.  
 
-# Automatically maintained ``CHANGELOG.md``
+# Automatically updated ``CHANGELOG.md``
 
 Starting from the second release, a ``CHANGELOG.md`` will be created at the root of the repo.
 
