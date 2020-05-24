@@ -75,7 +75,7 @@ If you are interested by the automation that this template features but don't ca
 - In rare occasions the workflow in charge of performing the initial configuration does not fire up.
   If it is the case for you please delete the repo you just created and start over again.
 
-# Customizations
+# Customization
 
 ## Changing the directory structures
 
@@ -146,6 +146,24 @@ your module published this won’t work on Deno anymore for the same reason
 it won’t work in the Browser, the ``database.json`` file is present 
 on the disk at runtime.  
 
+# Automatically maintained ``CHANGELOG.md``
+
+Starting from the second release, a ``CHANGELOG.md`` will be created at the root of the repo.
+
+*Example:*  
+![image](https://user-images.githubusercontent.com/6702424/82747884-c47a5800-9d9d-11ea-8f3b-22df03352e54.png)
+
+The ``CHANGELOG.md`` is built from the commits messages since last release.
+
+Are NOT included in the ``CHANGELOG.md``:
+- The commit messages that includes the word "changelog" ( non-case sensitive ). 
+- The commit messages that start with "Merge branch ".
+- The commit messages that with "GitBook: "
+
+
+*The GitHub release will point to a freezed version of the ``CHANGELOG.md``*:  
+![image](https://user-images.githubusercontent.com/6702424/82748469-6439e500-9da2-11ea-8552-ea9b7322dfa7.png)
+
 # Video demo
 
 This is a video demo is showcasing [ts_ci](https://github.com/garronej/ts_ci), a similar template repo but without the Deno support.
@@ -193,4 +211,3 @@ And update your DNS:
 I personally use [Hurricane Electric](https://dns.he.net) free DNS servers because they support a lot of record types.
 However, if your DNS provider does not support ``ALIAS``, you can use ``A`` records and manually enter the IP of GitHub servers.
 I let you consult the [GitHub Pages Documentation](https://help.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain). 
-
