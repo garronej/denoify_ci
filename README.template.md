@@ -61,22 +61,13 @@ import { myObject } from 'https://deno.land/x/#{REPO_NAME}#/myObject.ts';
 
 ## Import from HTML, with CDN
 
-Expose a global (wider browser support):  
-
 ```html
-<script src="//unpkg.com/#{REPO_NAME}#/umd_bundle.min.js"></script>
+<script src="//unpkg.com/#{REPO_NAME}#/bundle.min.js"></script>
 <script>
-  var myFunction = #{REPO_NAME}#.myFunction;
+  const { myFunction, myObject } = #{REPO_NAME}#;
 </script>
 ```
-
-Or import as an ES module:  
-
-```html
-<script type="module">
-  import { myFunction, myObject } from '//unpkg.com/#{REPO_NAME}#/zz_esm/index.js';
-</script>
-```
+*You can import a specific version* [unpkg.com](https://unpkg.com)
 
 ## Contribute
 

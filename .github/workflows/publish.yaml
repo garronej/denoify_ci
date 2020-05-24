@@ -90,7 +90,7 @@ jobs:
         git config --local user.email "denoify_ci@github.com"
         git config --local user.name "denoify_ci"
         git add -A
-        git commit -am "Moving files to enable shorter paths (automatic)"
+        git commit -am "[automatic] Moving files to enable shorter import paths"
     - name: Push changes
       uses: ad-m/github-push-action@v0.5.0
       with:

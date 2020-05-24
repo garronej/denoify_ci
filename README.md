@@ -26,6 +26,7 @@ Besides, good stuff that comes with using this template:
   ``import {...} from "my_module/theFile"`` instead of the usual
   ``import {...} from "my_module/dist/theFile"`` 
 - CDN distribution for importing from ``.html`` files with a ``<script>`` tag.
+- When your users hit *Go to Definition* on a token your module expose they get redirected to the actual ``.ts`` source file instead of the ``.d.ts``.
 
 # How to use
 
@@ -136,7 +137,7 @@ export function getDatabase(): Record<string,any> {
                     __dirname,
                     "..", "database.json"
                 )
-            )
+            ) as Uint8Array
         )
     );
 }
@@ -180,6 +181,8 @@ Beside the documentation website, you might want to have a catchy landing page t
 You can use [GitHub pages](https://pages.github.com) to host it. 
 
 If you like the landing page of EVT, [evt.land](http://evt.land), you can fork the [repo](https://github.com/garronej/evt.land) and adapt it for your module.  
+
+To produce high quality GIF from screen recording that remain relatively small checkout the wonderful [Gifski](https://gif.ski) from [Sindre Sorhus](https://github.com/sindresorhus).
 
 You'll just have to go to settings and enable Pages.
 

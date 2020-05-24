@@ -1,5 +1,5 @@
 
-//This will not run on deno, we need a separate index to run our tests.
+//This will not run on deno, we need a separate test runner for Deno (./mod.ts).
 
 import * as child_process from "child_process";
 import * as path from "path";
