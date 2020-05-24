@@ -11,15 +11,9 @@
     <img src="https://img.shields.io/npm/dw/#{REPO_NAME}#">
     <img src="https://img.shields.io/npm/l/#{REPO_NAME}#">
 </p>
-<p align="center">
-  <a href="https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#">Home</a>
-  -
-  <a href="https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#">Documentation</a>
-  -
-  <a href="https://gitter.im/#{REPO_NAME}#/">Chat</a>
-</p>
 
----
+- [Home](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#)
+- [Documentation](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#)
 
 # Install / Import
 

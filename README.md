@@ -71,6 +71,7 @@ If you are interested by the automation that this template features but don't ca
 - Remember, when using ``fs`` that there is no node_modules directory in Deno. [Details](#accessing-files-on-the-disk).
 - The template does not support ``.npmignore`` ( it uses ``package.json`` ``files`` which is [safer](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d) ).
 - The template does not support ``.npmrc``.
+- Unlike GitHub and NPM, deno.land/x will not display HTML bits of your README.md.
 - In rare occasions the workflow in charge of performing the initial configuration does not fire up.
   If it is the case for you please delete the repo you just created and start over again.
 
