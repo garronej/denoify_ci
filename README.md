@@ -35,7 +35,7 @@ Besides, good stuff that comes with using this template:
 - [Few things you need to be aware of before getting started](#few-things-you-need-to-be-aware-of-before-getting-started)
 - [Customization](#customization)
   - [Changing the directory structures](#changing-the-directory-structures)
-  - [Enabling "Go to Definition" to redirect to the source ``.ts`` file.](#enabling-go-to-definition-to-redirect-to-the-source-ts-file)
+  - [Enabling "Go to Definition" to redirect to the source ``.ts`` file](#enabling-go-to-definition-to-redirect-to-the-source-ts-file)
   - [Swipe the image in the ``README.md``](#swipe-the-image-in-the-readmemd)
   - [Disable CDN build](#disable-cdn-build)
     - [Completely disable](#completely-disable)
@@ -45,9 +45,9 @@ Besides, good stuff that comes with using this template:
 - [Accessing files on the disk.](#accessing-files-on-the-disk)
 - [The automatically updated ``CHANGELOG.md``](#the-automatically-updated-changelogmd)
 - [Video demo](#video-demo)
-- [Examples of auto-generated readme:](#examples-of-auto-generated-readme)
-- [Creating a documentation website for your project:](#creating-a-documentation-website-for-your-project)
-- [Creating a landing page for your project.](#creating-a-landing-page-for-your-project)
+- [Examples of auto-generated readme](#examples-of-auto-generated-readme)
+- [Creating a documentation website for your project](#creating-a-documentation-website-for-your-project)
+- [Creating a landing page for your project](#creating-a-landing-page-for-your-project)
 
 
 # How to use
@@ -106,7 +106,7 @@ If you are interested by the automation that this template features but don't ca
 All your source files must remain inside the ``src`` dir, you can change how things are organized inside the source directory
 but don't forget to update your ``package.json`` ``main``, ``type`` and ``files`` fields and ``tsconfig.esm.json`` ``include`` field when appropriate.
 
-## Enabling "Go to Definition" to redirect to the source ``.ts`` file.  
+## Enabling "Go to Definition" to redirect to the source ``.ts`` file
 
 There is no denying that it is more convenient when clicking "Go To Definition" to get redirected to 
 a file ``.ts`` file rather than to a ``.d.ts``.  
@@ -265,11 +265,11 @@ This is a video demo is showcasing [ts_ci](https://github.com/garronej/ts_ci), a
 
 [![Watch the video](https://user-images.githubusercontent.com/6702424/82117367-c32ea700-976f-11ea-93f9-ec056aebc528.png)](https://youtu.be/Q5t-yP2PvPA)
 
-# Examples of auto-generated readme:
+# Examples of auto-generated readme
 
 ![npmjs com-2](https://user-images.githubusercontent.com/6702424/82423673-663f3380-9a84-11ea-8b78-c64215851f00.jpg)
 
-# Creating a documentation website for your project:
+# Creating a documentation website for your project
 
 I recommend [GitBook](https://www.gitbook.com), It enables you to write your documentation in markdown from their 
 website and get the markdown files synchronized with your repo.
@@ -286,7 +286,7 @@ are stored. It is configured by placing a ``.gitbook.yaml`` file at the root of 
 
 PS: I am not affiliated with GitBook in any way.
 
-# Creating a landing page for your project.
+# Creating a landing page for your project
 
 Beside the documentation website, you might want to have a catchy landing page to share on social networks.  
 You can use [GitHub pages](https://pages.github.com) to host it. 
