@@ -25,7 +25,8 @@ Besides, good stuff that comes with using this template:
   ``import {...} from "my_module/dist/theFile"`` 
 - CDN distribution for importing from ``.html`` files with a ``<script>`` tag.
 - When your users hit *Go to Definition* they get redirected to the actual ``.ts`` source file instead of the ``.d.ts``.
-  ( Feature disabled by default, refer to [instruction](#enabling-go-to-definition-to-redirect-to-the-source-ts-file) on how to enable it ).
+  ( Feature disabled by default, refer to [instruction](#enabling-go-to-definition-to-redirect-to-the-source-ts-file) on how to enable it ).  
+
 
 - [How to use](#how-to-use)
   - [Fork it ( click use the template )](#fork-it--click-use-the-template-)
