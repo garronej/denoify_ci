@@ -25,7 +25,28 @@ Besides, good stuff that comes with using this template:
   ``import {...} from "my_module/dist/theFile"`` 
 - CDN distribution for importing from ``.html`` files with a ``<script>`` tag.
 - When your users hit *Go to Definition* they get redirected to the actual ``.ts`` source file instead of the ``.d.ts``.
-  ( Feature disabled by default, refer to instruction to enable it ).
+  ( Feature disabled by default, refer to [instruction](#enabling-go-to-definition-to-redirect-to-the-source-ts-file) on how to enable it ).
+
+- [How to use](#how-to-use)
+  - [Fork it ( click use the template )](#fork-it--click-use-the-template-)
+  - [Enable automatic publishing.](#enable-automatic-publishing)
+- [Few things you need to be aware of before getting started](#few-things-you-need-to-be-aware-of-before-getting-started)
+- [Customization](#customization)
+  - [Changing the directory structures](#changing-the-directory-structures)
+  - [Enabling "Go to Definition" to redirect to the source ``.ts`` file.](#enabling-go-to-definition-to-redirect-to-the-source-ts-file)
+  - [Swipe the image in the ``README.md``](#swipe-the-image-in-the-readmemd)
+  - [Disable CDN build](#disable-cdn-build)
+    - [Completely disable](#completely-disable)
+    - [Only disable ES Module build ( ``dist/zz_esm/*`` )](#only-disable-es-module-build--distzz_esm-)
+  - [Remove unwanted dev dependencies](#remove-unwanted-dev-dependencies)
+  - [Customizing the Badges](#customizing-the-badges)
+- [Accessing files on the disk.](#accessing-files-on-the-disk)
+- [The automatically updated ``CHANGELOG.md``](#the-automatically-updated-changelogmd)
+- [Video demo](#video-demo)
+- [Examples of auto-generated readme:](#examples-of-auto-generated-readme)
+- [Creating a documentation website for your project:](#creating-a-documentation-website-for-your-project)
+- [Creating a landing page for your project.](#creating-a-landing-page-for-your-project)
+
 
 # How to use
 
