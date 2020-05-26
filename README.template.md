@@ -15,7 +15,11 @@
 - [Home](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#)
 - [Documentation](https://github.com/#{USER_OR_ORG}#/#{REPO_NAME}#)
 
+
+
 # Install / Import
+
+``#{REPO_NAME}#`` is both a [Deno](https://deno.land/x/#{REPO_NAME}#) and an [NPM](https://www.npmjs.com/#{REPO_NAME}#) module.
 
 ## Node:
 
