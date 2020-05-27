@@ -26,6 +26,7 @@ Besides, good stuff that comes with using this template:
 - CDN distribution for importing from ``.html`` files with a ``<script>`` tag.
 - When your users hit *"Go to Definition"* they get redirected to the actual ``.ts`` source file instead of the ``.d.ts``.
   ( Feature disabled by default, refer to [instructions](#enabling-go-to-definition-to-redirect-to-the-source-ts-file) on how to enable it ).  
+- Eslint and Prettifier are automatically run against files staged for commit. ( You can [disable](#disable-linting-and-formatting) this feature. )
 
 # Table of content
 
@@ -37,10 +38,13 @@ Besides, good stuff that comes with using this template:
   - [Changing the directory structures](#changing-the-directory-structures)
   - [Enabling "Go to Definition" to redirect to the source ``.ts`` file](#enabling-go-to-definition-to-redirect-to-the-source-ts-file)
   - [Swipe the image in the ``README.md``](#swipe-the-image-in-the-readmemd)
+  - [Disable linting and formatting](#disable-linting-and-formatting)
+    - [Disable Prettier](#disable-prettier)
+    - [Disable eslint and prettier altogether](#disable-eslint-and-prettier-altogether)
   - [Disable CDN build](#disable-cdn-build)
     - [Completely disable](#completely-disable)
     - [Only disable ES Module build ( ``dist/zz_esm/*`` )](#only-disable-es-module-build--distzz_esm-)
-  - [Remove unwanted dev dependencies](#remove-unwanted-dev-dependencies)
+  - [Safely removable dev dependencies](#safely-removable-dev-dependencies)
   - [Customizing the Badges](#customizing-the-badges)
 - [Accessing files on the disk.](#accessing-files-on-the-disk)
 - [The automatically updated ``CHANGELOG.md``](#the-automatically-updated-changelogmd)
@@ -147,6 +151,60 @@ A good way to host your repo image is to open an issue named ASSET in your proje
 While you are at it submit this image as *social preview* in your repos GitHub page's settings so that when you share on
 Twitter or Reddit you don't get your GitHub profile picture to show up.
 
+## Disable linting and formatting
+
+### Disable Prettier
+
+[Prettier](https://prettier.io) is opinionated, it is OK to want to break free from it.
+
+Remove these ``package.json``'s ``scripts``:  
+- ``_format``
+- ``format``
+- ``format:check``
+
+Remove these ``package.json``'s ``devDependencies``:  
+- ``prettier``
+- ``eslint-config-prettier``  
+
+In the ``package.json``'s ``lint-staged`` field remove ``"*.{`s,json,md}": [ "prettier --write" ]``  
+
+From ``.eslintrc.js``, remove the line: ``"prettier/@typescript-eslint",``.  
+
+Delete these files:  
+- ``.prettierignore``
+- ``.prettierrc.json``  
+
+In ``.github/workflows/ci.yaml`` remove the line ``npm run format:check`` from the ``test_lint`` job.  
+
+
+### Disable Eslint and Prettier altogether
+
+Remove these ``package.json``'s ``scripts``:  
+
+- ``_format``
+- ``format``
+- ``format:check``
+- ``lint:check``
+- ``lint``
+
+Remove these ``package.j`on``'s ``devDependencies``:  
+- ``prettier``
+- ``eslint-config-prettier``  
+- ``eslint``
+- ``@typescript-eslint/parser``
+- ``@typescript-eslint/eslint-plugin``
+- ``husky``
+
+Remove the  ``lint-staged`` and ``husky`` fields from the ``package.json``.  
+
+Delete these files:  
+- ``.prettierignore``
+- ``.prettierrc.json``  
+- ``.eslintignore``
+- ``.eslintrc.js``
+
+In ``.github/workflows/ci.yaml`` remove the ``test_lint`` job and the two lines ``needs: test_lint``.  
+
 ## Disable CDN build  
 
 ### Completely disable  
@@ -192,19 +250,14 @@ Remove ``tsconfig.esm.json``. ( file at the root of the project )
 Edit the ``README.md`` to remove instructions about how to 
 import as ES module.
 
-## Remove unwanted dev dependencies
 
-Dev dependencies that are not required by the template ( you can safely remove them if you don't use them in your code ):
+
+## Safely removable dev dependencies
+
+Dependencies that you can remove from the ``package.json`` if you don't use them:
 
 - ``evt``
 - ``@types/node``
-
-Must keep:
-
-- ``typescript``
-- ``denoify`` ( for the script that moves dist files to the root before publishing )
-- ``simplifyify`` ( for CDN build )
-- ``terser`` ( for CDN build )
 
 ## Customizing the Badges
 
@@ -254,7 +307,6 @@ Are NOT included in the ``CHANGELOG.md``:
 - The commit messages that includes the word "changelog" ( non-case sensitive ). 
 - The commit messages that start with "Merge branch ".
 - The commit messages that with "GitBook: "
-
 
 *The GitHub release will point to a freezed version of the ``CHANGELOG.md``*:  
 ![image](https://user-images.githubusercontent.com/6702424/82748469-6439e500-9da2-11ea-8552-ea9b7322dfa7.png)

@@ -12,17 +12,33 @@
         "test:node": "node ./dist/test",
         "test:deno": "deno run --allow-read ./deno_dist/test/mod.ts",
         "test": "npm run test:node && npm run test:deno",
-        "tsc": "npx tsc",
-        "denoify": "npx denoify",
-        "cdn:bundle:.js": "simplifyify dist/index.js -s #{REPO_NAME}# -o dist/bundle.js --debug --bundle",
+        "cdn:bundle:.js": "simplifyify dist/index.js -s refactored_fortnight_sorry -o dist/bundle.js --debug --bundle",
         "cdn:bundle:.min.js": "terser dist/bundle.js -cmo dist/bundle.min.js",
         "cdn:bundle": "npm run cdn:bundle:.js && npm run cdn:bundle:.min.js",
         "cdn:esm": "tsc -p tsconfig.esm.json",
         "cdn": "npm run cdn:bundle && npm run cdn:esm",
-        "build": "npm run tsc && npm run denoify && npm run cdn",
-        "enable_short_import_path:npm": "npm run build && npx denoify_enable_short_npm_import_path",
-        "enable_short_import_path:deno": "npm run build && npx denoify_enable_short_deno_import_path",
+        "build": "tsc && denoify && npm run cdn",
+        "enable_short_import_path:npm": "npm run build && denoify_enable_short_npm_import_path",
+        "enable_short_import_path:deno": "npm run build && denoify_enable_short_deno_import_path",
+        "lint:check": "eslint . --ext .ts,.tsx",
+        "lint": "npm run lint:check -- --fix",
+        "_format": "prettier '**/*.{ts,tsx,json,md}'",
+        "format": "npm run _format -- --write",
+        "format:check": "npm run _format -- --list-different",
         "clean": "rm -rf dist deno_dist node_modules mod.ts"
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": [
+            "eslint --fix"
+        ],
+        "*.{`s,json,md}": [
+            "prettier --write"
+        ]
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged -v"
+        }
     },
     "author": "u/#{USER_OR_ORG}#",
     "license": "MIT",
@@ -41,6 +57,13 @@
         "denoify": "0.2.15",
         "evt": "1.7.11",
         "simplifyify": "8.0.1",
-        "terser": "4.6.13"
+        "terser": "4.6.13",
+        "husky": "^4.2.1",
+        "prettier": "^1.19.1",
+        "eslint": "^7.1.0",
+        "@typescript-eslint/parser": "^3.0.1",
+        "@typescript-eslint/eslint-plugin": "^3.0.1",
+        "eslint-config-prettier": "^6.11.0",
+        "lint-staged": "^10.2.6"
     }
 }
