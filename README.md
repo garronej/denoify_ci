@@ -72,7 +72,7 @@ Each time you will push changes ``npm run test:node`` and ``npm run test:deno`` 
 containers against multiple Node and Deno versions, if everything passes you will get a green ``ci`` badges 
 in your readme.
 
-## Enable automatic publishing.
+## Enable automatic publishing
 
 Once you are ready to make your package available on NPM and deno.land/x you 
 will need to provide two tokens so that the workflow can publish on your behalf:
@@ -105,7 +105,7 @@ If you are interested by the automation that this template features but don't ca
 
 # Customization
 
-## Changing the directory structures
+## Changing the directory structure
 
 All your source files must remain inside the ``src`` dir, you can change how things are organized inside the source directory
 but don't forget to update your ``package.json`` ``main``, ``type`` and ``files`` fields and ``tsconfig.esm.json`` ``include`` field when appropriate.
@@ -175,7 +175,6 @@ Delete these files:
 - ``.prettierrc.json``  
 
 In ``.github/workflows/ci.yaml`` remove the line ``npm run format:check`` from the ``test_lint`` job.  
-
 
 ### Disable Eslint and Prettier altogether
 
