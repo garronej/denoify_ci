@@ -40,7 +40,7 @@ Besides, good stuff that comes with using this template:
   - [Swipe the image in the ``README.md``](#swipe-the-image-in-the-readmemd)
   - [Disable linting and formatting](#disable-linting-and-formatting)
     - [Disable Prettier](#disable-prettier)
-    - [Disable eslint and prettier altogether](#disable-eslint-and-prettier-altogether)
+    - [Disable Eslint and Prettier altogether](#disable-eslint-and-prettier-altogether)
   - [Disable CDN build](#disable-cdn-build)
     - [Completely disable](#completely-disable)
     - [Only disable ES Module build ( ``dist/zz_esm/*`` )](#only-disable-es-module-build--distzz_esm-)
