@@ -74,7 +74,7 @@ Or import it as an ES module:
 </script>
 ```
 
-*You can specify the version you wish to import: * [unpkg.com](https://unpkg.com)
+*You can specify the version you wish to import:* [unpkg.com](https://unpkg.com)
 
 ## Contribute
 
