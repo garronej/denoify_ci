@@ -92,6 +92,7 @@ The first time the module is published a pull request that adds your repo to the
 very new, depending on what you have in mind it might require a lot of extra work to get your code 
 to comply with the requirements it sets.  
 If you are interested by the automation that this template features but don't care bout Deno support checkout [ts_ci](https://github.com/garronej/ts_ci).
+- If you are not familiar with how Denoify works you might want to have a look at [this guide](https://github.com/garronej/my_dummy_npm_and_deno_module) first.
 - You probably want to "Use this template" ( the green button ) instead of forking the repo.  
 - The files to include in the NPM bundle are cherry-picked using the ``package.json`` ``files`` field.  
   If you don't want to bother and includes everything just remove the ``files`` field from the ``package.json``
