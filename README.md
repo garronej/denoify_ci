@@ -8,6 +8,8 @@
     <br>
 </p>
 
+**WARNING**: Temporarely broken by a big update of the deno module registery. Soon to be fixed!
+
 # Presentation 
 
 This template automates the boring and tedious tasks of:
