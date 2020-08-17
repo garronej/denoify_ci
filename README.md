@@ -16,7 +16,7 @@ This template automates the boring and tedious tasks of:
 - Writing a [README.md](https://github.com/garronej/denoify_ci/blob/dev/README.template.md) with decent presentation and instructions on how to install/import your module.
 - Testing on multiple Node and Deno version before publishing.
 - Maintaining a CHANGELOG.
-- Publishing on NPM and [deno.land/x](https://deno.land/x), creating corresponding GitHub releases.
+- Publishing on NPM and [deno.land/x](https://deno.land/x), creating corresponding GitHub TAGs.
 
 Besides, good stuff that comes with using this template:
 - No source files are tracked on the default branch.
@@ -30,12 +30,14 @@ Besides, good stuff that comes with using this template:
 
 # Table of content
 
+- [Presentation](#presentation)
+- [Table of content](#table-of-content)
 - [How to use](#how-to-use)
   - [Fork it ( click use the template )](#fork-it--click-use-the-template-)
-  - [Enable automatic publishing.](#enable-automatic-publishing)
+  - [Enable automatic publishing](#enable-automatic-publishing)
 - [Few things you need to be aware of before getting started](#few-things-you-need-to-be-aware-of-before-getting-started)
 - [Customization](#customization)
-  - [Changing the directory structures](#changing-the-directory-structures)
+  - [Changing the directory structure](#changing-the-directory-structure)
   - [Enabling "Go to Definition" to redirect to the source ``.ts`` file](#enabling-go-to-definition-to-redirect-to-the-source-ts-file)
   - [Swipe the image in the ``README.md``](#swipe-the-image-in-the-readmemd)
   - [Disable linting and formatting](#disable-linting-and-formatting)
@@ -79,15 +81,18 @@ will need to provide two tokens so that the workflow can publish on your behalf:
 
 Go to repository ``Settings`` tab, then ``Secrets`` you will need to add two new secrets:
 - ``NPM_TOKEN``, you NPM authorization token.
-- ``PAT``, GitHub **P**ersonal **A**ccess **T**oken with the **repo** authorization. [link](https://github.com/settings/tokens)
+- ``PAT``, GitHub **P**ersonal **A**ccess **T**oken with the **repo** and **write:repo_hook** authorizations. [link](https://github.com/settings/tokens)
 
 To trigger publishing edit the ``package.json`` ``version`` field ( ``0.0.0``-> ``0.0.1`` for example) then push changes... that's all !
 The publishing will actually be performed only if ``npm test`` passes.  
 
-The first time the module is published a pull request that adds your repo to the deno.land/x database will be created on your behalf [here](https://github.com/denoland/deno_website2/pulls). Note that every module needs to be approved by a deno maintainer, it is often Ryan Dahl that merges, knowing that, avoid wasting their time by publishing ``fizz_buzz_test_3`` modules.
+After a few minutes ( assuming the module name was still available ) you should be able to find your
+module on [NPM](https://www.npmjs.com) and [deno.land/x](https://deno.land/x).
 
 # Few things you need to be aware of before getting started
 
+- In rare occasions the workflow in charge of performing the initial configuration does not fire up.
+  If it is the case for you please delete the repo you just created and start over again.
 - [Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno, is still
 very new, depending on what you have in mind it might require a lot of extra work to get your code 
 to comply with the requirements it sets.  
@@ -96,14 +101,15 @@ If you are interested by the automation that this template features but don't ca
 - The files to include in the NPM bundle are cherry-picked using the ``package.json`` ``files`` field.  
   If you don't want to bother and includes everything just remove the ``files`` field from the ``package.json``
   otherwise remember, when you add a subdirectory in ``src/``, to update the ``package.json`` ``files``.
-- Remember, when using ``fs`` that there is no node_modules directory in Deno. [Details](#accessing-files-on-the-disk).
+- Remember, when using ``fs`` that there is no `node_modules` directory in Deno. [Details](#accessing-files-on-the-disk).
 - The template does not support ``.npmignore`` ( it uses ``package.json`` ``files`` which is [safer](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d) ).
 - The template does not support ``.npmrc``.
-- Unlike GitHub and NPM, deno.land/x will not display HTML bits of your README.md.
-- In rare occasions the workflow in charge of performing the initial configuration does not fire up.
-  If it is the case for you please delete the repo you just created and start over again.
+- Unlike GitHub and NPM, [deno.land/x](https://deno.land/x) will not display HTML bits of your `README.md`.
 
 # Customization
+
+<details>
+  <summary>Click to expand</summary>
 
 ## Changing the directory structure
 
@@ -261,6 +267,9 @@ Dependencies that you can remove from the ``package.json`` if you don't use them
 ## Customizing the Badges
 
 You can use [shields.io](https://shields.io) to create badges on metrics you would like to showcase.
+  
+</details>
+
 
 # Accessing files on the disk.
 

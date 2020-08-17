@@ -84,7 +84,7 @@ Or import it as an ES module:
 </script>
 ```
 
-_You can specify the version you wish to import:_ [unpkg.com](https://unpkg.com)
+_You can specify the version you wish to import, see [unpkg.com](https://unpkg.com)_
 
 ## Contribute
 
