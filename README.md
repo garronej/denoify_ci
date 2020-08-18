@@ -108,15 +108,20 @@ If you are interested by the automation that this template features but don't ca
 
 # Customization
 
+## Changing the directory structure
+
 <details>
   <summary>Click to expand</summary>
-
-## Changing the directory structure
 
 All your source files must remain inside the ``src`` dir, you can change how things are organized inside the source directory
 but don't forget to update your ``package.json`` ``main`` and ``type`` and ``tsconfig.esm.json`` ``include`` field when appropriate.
 
+</details>
+
 ## Enabling "Go to Definition" to redirect to the source ``.ts`` file
+
+<details>
+  <summary>Click to expand</summary>
 
 There is no denying that it is more convenient when clicking "Go To Definition" to get redirected to 
 a file ``.ts`` file rather than to a ``.d.ts``.  
@@ -150,8 +155,12 @@ It is important to keep your project compatible with older TS version because
 - In certain environments updating TypeScript is not an option. Take [Stackblitz](https://stackblitz.com) 
   for example.
 
+</details>
 
 ## Swipe the image in the ``README.md``
+
+<details>
+  <summary>Click to expand</summary>
 
 A good way to host your repo image is to open an issue named ASSET in your project, close it, create a comment, drag and drop the picture you want to use and that's it. You have a link that you can replace in the ``README.md``.  
 While you are at it submit this image as *social preview* in your repos GitHub page's settings so that when you share on
@@ -210,9 +219,14 @@ Delete these files:
 
 In ``.github/workflows/ci.yaml`` remove the ``test_lint`` job and the two lines ``needs: test_lint``.  
 
+</details>
+
 ## Disable CDN build  
 
 ### Completely disable  
+
+<details>
+  <summary>Click to expand</summary>
 
 If your project does not target the browser or if you are not interested in offering CDN distribution:
 
@@ -220,7 +234,12 @@ If your project does not target the browser or if you are not interested in offe
 - Remove ``./tsconfig.esm.json``
 - Remove ``simplifyify`` and ``terser`` from dev dependencies.
 
+</details>
+
 ### Only disable ES Module build ( ``dist/zz_esm/*`` )  
+
+<details>
+  <summary>Click to expand</summary>
 
 If ``npm run build`` fail because ``tsc -p tsconfig.esm.json`` gives errors you may want to remove the ESM
 build but keep the ``bundle.js`` and ``bundle.min.js``. To do that:
@@ -252,16 +271,24 @@ Remove ``tsconfig.esm.json``. ( file at the root of the project )
 Edit the ``README.md`` to remove instructions about how to 
 import as ES module.
 
-
+</details>
 
 ## Safely removable dev dependencies
+
+<details>
+  <summary>Click to expand</summary>
 
 Dependencies that you can remove from the ``package.json`` if you don't use them:
 
 - ``evt``
 - ``@types/node``
 
+</details>
+
 ## Customizing the Badges
+
+<details>
+  <summary>Click to expand</summary>
 
 You can use [shields.io](https://shields.io) to create badges on metrics you would like to showcase.
   
@@ -271,6 +298,9 @@ You can use [shields.io](https://shields.io) to create badges on metrics you wou
 # Accessing files on the disk.
 
 Keep in mind that in Deno there is no ``node_modules`` sitting on the disk at runtime.  
+
+<details>
+  <summary>Click to expand</summary>
 
 Let's assume for example that you would like to load a ``database.json`` file located 
 at the root of your project. You would write something like this:  
@@ -298,6 +328,8 @@ This will work on both Node and Deno when you run your tests but once
 your module published this won’t work on Deno anymore for the same reason 
 it won’t work in the Browser, the ``database.json`` file is present 
 on the disk at runtime.  
+
+</details>
 
 # The automatically updated ``CHANGELOG.md``
 
