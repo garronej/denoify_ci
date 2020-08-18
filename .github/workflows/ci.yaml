@@ -59,7 +59,7 @@ jobs:
         deno-version: v1.x
     - run: deno --version
     - run: npm ci
-    - run: npx denoify
+    - run: npm run build
     - run: npm run test:deno
 
   trigger_publish:
