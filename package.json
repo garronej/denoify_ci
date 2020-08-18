@@ -1,6 +1,6 @@
 {
     "name": "#{REPO_NAME}#",
-    "version": "0.0.1",
+    "version": "0.0.0",
     "description": "#{DESC}#",
     "repository": {
         "type": "git",
