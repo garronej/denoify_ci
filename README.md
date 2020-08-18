@@ -166,9 +166,14 @@ A good way to host your repo image is to open an issue named ASSET in your proje
 While you are at it submit this image as *social preview* in your repos GitHub page's settings so that when you share on
 Twitter or Reddit you don't get your GitHub profile picture to show up.
 
+</details>
+
 ## Disable linting and formatting
 
 ### Disable Prettier
+
+<details>
+  <summary>Click to expand</summary>
 
 [Prettier](https://prettier.io) is opinionated, it is OK to want to break free from it.
 
@@ -191,7 +196,12 @@ Delete these files:
 
 In ``.github/workflows/ci.yaml`` remove the line ``npm run format:check`` from the ``test_lint`` job.  
 
+</details>
+
 ### Disable Eslint and Prettier altogether
+
+<details>
+  <summary>Click to expand</summary>
 
 Remove these ``package.json``'s ``scripts``:  
 
