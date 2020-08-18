@@ -211,7 +211,7 @@ Remove these ``package.json``'s ``scripts``:
 - ``lint:check``
 - ``lint``
 
-Remove these ``package.j`on``'s ``devDependencies``:  
+Remove these ``package.json``'s ``devDependencies``:  
 - ``prettier``
 - ``eslint-config-prettier``  
 - ``eslint``
