@@ -186,7 +186,7 @@ Remove these ``package.json``'s ``devDependencies``:
 - ``prettier``
 - ``eslint-config-prettier``  
 
-In the ``package.json``'s ``lint-staged`` field remove ``"*.{`s,json,md}": [ "prettier --write" ]``  
+In the ``package.json``'s ``lint-staged`` field remove ``"*.{ts,tsx,json,md}": [ "prettier --write" ]``  
 
 From ``.eslintrc.js``, remove the line: ``"prettier/@typescript-eslint",``.  
 
