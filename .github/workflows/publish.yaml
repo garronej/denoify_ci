@@ -96,7 +96,7 @@ jobs:
 
     - name: Create Webhook for automatic publishing on deno.land/x ( if not already done ).
       id: id_wh
-      uses: garronej/github_actions_toolkit@1.5
+      uses: garronej/github_actions_toolkit@v1.6
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
