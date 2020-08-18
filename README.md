@@ -8,8 +8,6 @@
     <br>
 </p>
 
-**WARNING**: Temporarely broken by a big update of the deno module registery. Soon to be fixed!
-
 # Presentation 
 
 This template automates the boring and tedious tasks of:
@@ -102,8 +100,7 @@ If you are interested by the automation that this template features but don't ca
 - If you are not familiar with how Denoify works you might want to have a look at [this guide](https://github.com/garronej/my_dummy_npm_and_deno_module) first.
 - You probably want to "Use this template" ( the green button ) instead of forking the repo.  
 - The files to include in the NPM bundle are cherry-picked using the ``package.json`` ``files`` field.  
-  If you don't want to bother and includes everything just remove the ``files`` field from the ``package.json``
-  otherwise remember, when you add a subdirectory in ``src/``, to update the ``package.json`` ``files``.
+  If you don't want to bother and includes everything just remove the ``files`` field from the ``package.json``.
 - Remember, when using ``fs`` that there is no `node_modules` directory in Deno. [Details](#accessing-files-on-the-disk).
 - The template does not support ``.npmignore`` ( it uses ``package.json`` ``files`` which is [safer](https://medium.com/@jdxcode/for-the-love-of-god-dont-use-npmignore-f93c08909d8d) ).
 - The template does not support ``.npmrc``.
@@ -117,7 +114,7 @@ If you are interested by the automation that this template features but don't ca
 ## Changing the directory structure
 
 All your source files must remain inside the ``src`` dir, you can change how things are organized inside the source directory
-but don't forget to update your ``package.json`` ``main``, ``type`` and ``files`` fields and ``tsconfig.esm.json`` ``include`` field when appropriate.
+but don't forget to update your ``package.json`` ``main`` and ``type`` and ``tsconfig.esm.json`` ``include`` field when appropriate.
 
 ## Enabling "Go to Definition" to redirect to the source ``.ts`` file
 
@@ -221,7 +218,6 @@ If your project does not target the browser or if you are not interested in offe
 
 - Remove all ``cdn:*`` npm scripts and ``npm run cdn`` from the `build` script ( in ``package.json`` ).
 - Remove ``./tsconfig.esm.json``
-- Remove ``/dist/esm/`` entry from ``files`` in ``package.json`` 
 - Remove ``simplifyify`` and ``terser`` from dev dependencies.
 
 ### Only disable ES Module build ( ``dist/zz_esm/*`` )  
@@ -250,8 +246,6 @@ By theses ones:
   "cdn": "npm run cdn:.js && npm run cdn:.min.js",
 }
 ```
-
-Remove the ``/dist/zz_esm/`` entry from ``package.json``'s ``files``.
 
 Remove ``tsconfig.esm.json``. ( file at the root of the project )  
 

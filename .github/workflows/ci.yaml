@@ -34,7 +34,7 @@ jobs:
       with:
         node-version: ${{ matrix.node }}
     - run: npm ci
-    - run: npm run build
+    - run: npx tsc
     - run: npm run test:node
 
   test_deno:
@@ -59,7 +59,7 @@ jobs:
         deno-version: v1.x
     - run: deno --version
     - run: npm ci
-    - run: npm run build
+    - run: npx denoify
     - run: npm run test:deno
 
   trigger_publish:
