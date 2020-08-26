@@ -53,7 +53,7 @@
     "devDependencies": {
         "typescript": "^3.9.7",
         "@types/node": "^10.0.0",
-        "denoify": "^0.4.11",
+        "denoify": "^0.5.2",
         "evt": "1.8.7",
         "simplifyify": "8.0.3",
         "terser": "5.1.0",
