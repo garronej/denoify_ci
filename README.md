@@ -91,7 +91,7 @@ module on [NPM](https://www.npmjs.com) and [deno.land/x](https://deno.land/x).
 
 # Few things you need to be aware of before getting started
 
-- In rare occasions the workflow in charge of performing the initial configuration does not fire up.
+- **Quite often, due to a GitHub Action bug, the workflow in charge of performing the initial configuration does not fire up.**
   If it is the case for you please delete the repo you just created and start over again.
 - [Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno, is still
 very new, depending on what you have in mind it might require a lot of extra work to get your code 
