@@ -10,7 +10,7 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "test:node": "node ./dist/test",
-        "test:deno": "deno run --allow-read ./deno_dist/test/mod.ts",
+        "test:deno": "deno run --allow-read --unstable ./deno_dist/test/mod.ts",
         "test": "npm run test:node && npm run test:deno",
         "cdn:bundle:.js": "simplifyify dist/index.js -s #{REPO_NAME}# -o dist/bundle.js --debug --bundle",
         "cdn:bundle:.min.js": "terser dist/bundle.js -cmo dist/bundle.min.js",
@@ -53,8 +53,8 @@
     "devDependencies": {
         "typescript": "^3.9.7",
         "@types/node": "^10.0.0",
-        "denoify": "^0.5.2",
-        "evt": "1.8.7",
+        "denoify": "^0.5.10",
+        "evt": "1.8.11",
         "simplifyify": "8.0.3",
         "terser": "5.1.0",
         "husky": "^4.2.5",
