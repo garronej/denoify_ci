@@ -70,7 +70,7 @@ Besides, good stuff that comes with using this template:
 
 Once you've done that a GitHub action workflow will set up the ``README.md`` and the ``package.json`` 
  for you, wait a couple of minutes for it to complete ( a bot will push ). You can follow the job advancement in the "Action" tab.
-( warning read [this](#few-things-you-need-to-be-aware-of-before-getting-started) )
+(**warning** read [this](#few-things-you-need-to-be-aware-of-before-getting-started))
 
 Each time you will push changes ``npm run test:node`` and ``npm run test:deno`` will be run on remote docker 
 containers against multiple Node and Deno versions, if everything passes you will get a green ``ci`` badges 
