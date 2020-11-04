@@ -60,7 +60,7 @@ Besides, good stuff that comes with using this template:
 
 ## Fork it ( click use the template )
 
-- Click on *Use this template*
+- Click on ![image](https://user-images.githubusercontent.com/6702424/98155461-92395e80-1ed6-11eb-93b2-98c64453043f.png)
 - The repo name you will choose will be used as a module name for NPM and [deno.land/x](https://deno.land/x) so:
   - Make sure to use low dashes ( ``_`` ) instead of ( ``-`` ) to comply with deno naming standard.
   - Be sure it makes for a valid NPM module name.
@@ -93,8 +93,6 @@ module on [NPM](https://www.npmjs.com) and [deno.land/x](https://deno.land/x).
 
 # Few things you need to be aware of before getting started
 
-- **Quite often, due to a GitHub Action bug, the workflow in charge of performing the initial configuration does not fire up.**
-  If it is the case for you please delete the repo you just created and start over again.
 - [Denoify](https://github.com/garronej/denoify), the build tool that enable to support Deno, is still
 very new, depending on what you have in mind it might require a lot of extra work to get your code 
 to comply with the requirements it sets.  
@@ -384,6 +382,8 @@ Example:
 I advise you to have a special directory at the root of your project where the markdown documentation files
 are stored. It is configured by placing a ``.gitbook.yaml`` file at the root of the repo containing, for example:
 ``root: ./docs/``
+
+Do not hesitate to request free access to premium features. Open source projects are eligible!  
 
 PS: I am not affiliated with GitBook in any way.
 
