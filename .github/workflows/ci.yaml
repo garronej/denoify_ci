@@ -11,7 +11,7 @@ jobs:
 
   test_lint:
     runs-on: ubuntu-latest
-    if: ${{ !github.event.created }}
+    if: ${{ !github.event.created && github.repository != 'garronej/ts_ci' }}
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -20,22 +20,38 @@ jobs:
       run: |
         npm run lint:check
         npm run format:check
-
   test_node:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: test_lint
     strategy:
       matrix:
-        node: [ '14', '13', '12', '11', '10', '8' ]
-    name: Test with Node v${{ matrix.node }}
+        node: [ '14', '13', '12' ]
+        os: [ windows-latest, ubuntu-latest ]
+    name: Test with Node v${{ matrix.node }} on ${{ matrix.os }}
     steps:
+    - name: Tell if project is using npm or yarn
+      id: _1
+      uses: garronej/github_actions_toolkit@v1.11
+      with: 
+        action_name: tell_if_project_uses_npm_or_yarn
+        owner: ${{github.repository_owner}}
+        repo: ${{github.event.repository.name}}
+        branch: ${{github.ref}}
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
-    - run: npm ci
-    - run: npx tsc
-    - run: npm run test:node
+    - if: steps._1.npm_or_yarn == 'yarn'
+      run: |
+        yarn install --frozen-lockfile                                                                                                                                                                                        
+        yarn run build
+        yarn run test
+    - if: steps._1.npm_or_yarn == 'npm'
+      run: |
+        npm ci                                                                                                                                                                                        
+        npm run build
+        npm run test
+
 
   test_deno:
     runs-on: ubuntu-latest
@@ -61,7 +77,6 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm run test:deno
-
   trigger_publish:
     name: Trigger publish.yaml workflow if package.json version updated ( and secrets.PAT is set ).
     runs-on: ubuntu-latest
@@ -75,7 +90,7 @@ jobs:
 
     - name: Get version on latest
       id: v_latest
-      uses: garronej/github_actions_toolkit@v1.6
+      uses: garronej/github_actions_toolkit@v1.11
       with: 
         action_name: get_package_json_version
         owner: ${{github.repository_owner}}
@@ -85,7 +100,7 @@ jobs:
 
     - name: Get version on develop
       id: v_develop
-      uses: garronej/github_actions_toolkit@v1.6
+      uses: garronej/github_actions_toolkit@v1.11
       with: 
         action_name: get_package_json_version
         owner: ${{github.repository_owner}}
@@ -95,7 +110,7 @@ jobs:
 
     - name: 'Trigger the ''publish'' workflow' 
       if: ${{ !!env.PAT && steps.v_develop.outputs.compare_result == '1' }}
-      uses: garronej/github_actions_toolkit@v1.6
+      uses: garronej/github_actions_toolkit@v1.11
       env:
         GITHUB_TOKEN: ${{ secrets.PAT }} 
       with:
