@@ -40,19 +40,13 @@ import { myObject } from "#{REPO_NAME}#/myObject";
 For the latest version:
 
 ```typescript
-import {
-    myFunction,
-    myObject,
-} from "https://deno.land/x/#{REPO_NAME}#/mod.ts";
+import { myFunction, myObject } from "https://deno.land/x/#{REPO_NAME}#/mod.ts";
 ```
 
 To import a specific [release](https://github.com/garronej/#{REPO_NAME}#/releases):
 
 ```typescript
-import {
-    myFunction,
-    myObject,
-} from "https://deno.land/x/#{REPO_NAME}#@0.1.0/mod.ts";
+import { myFunction, myObject } from "https://deno.land/x/#{REPO_NAME}#@0.1.0/mod.ts";
 ```
 
 Specific imports:
@@ -77,10 +71,7 @@ Or import it as an ES module:
 
 ```html
 <script type="module">
-    import {
-        myFunction,
-        myObject,
-    } from "//unpkg.com/#{REPO_NAME}#/zz_esm/index.js";
+    import { myFunction, myObject } from "//unpkg.com/#{REPO_NAME}#/zz_esm/index.js";
 </script>
 ```
 
