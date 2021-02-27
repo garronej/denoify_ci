@@ -1,18 +1,20 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "CommonJS",
         "target": "es5",
-        "lib": ["es2015"],
+        "lib": ["es2015", "DOM"],
+        "esModuleInterop": true,
         "declaration": true,
-        "outDir": "dist/",
+        "outDir": "./dist",
         "sourceMap": true,
         "newLine": "LF",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
         "incremental": true,
         "strict": true,
-        "downlevelIteration": true
+        "downlevelIteration": true,
+        "jsx": "react-jsx",
+        "noFallthroughCasesInSwitch": true
     },
-    "filesGlob": ["src/**/*"],
-    "exclude": ["node_modules/", "dist/", "deno_dist/", "src/**/*.deno.ts", "src/**/*.deno.tsx"]
+    "include": ["src"]
 }
