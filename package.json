@@ -62,7 +62,7 @@
         "lint-staged": "^10.5.4",
         "prettier": "^2.2.1",
         "simplifyify": "^8.0.3",
-        "terser": "^5.3.8",
+        "terser": "^5.14.2",
         "typescript": "^4.1.5"
     }
 }
