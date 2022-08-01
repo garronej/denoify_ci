@@ -1,4 +1,8 @@
 
+> ⚠️ THIS PROJECT IS NO LONGER MAINTAINED: Copy the CI setup of [tsafe](https://github.com/garronej/tsafe) instead.  
+
+
+
 <p align="center">
     <img src="https://user-images.githubusercontent.com/6702424/82036935-c52a3480-96a1-11ea-9794-e982a23e5612.png">  
 </p>
